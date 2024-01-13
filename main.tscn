@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bs8sw6rfb866v"]
+[gd_scene load_steps=3 format=3 uid="uid://bsso464kuurcu"]
 
 [ext_resource type="Script" path="res://Scenes/node.gd" id="1_bya8y"]
 
+[sub_resource type="Environment" id="Environment_h0qbo"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 3.24
+glow_blend_mode = 1
+
 [node name="main" type="Node2D"]
 script = ExtResource("1_bya8y")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h0qbo")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 261.0

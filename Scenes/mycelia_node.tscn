@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdfy34177dbav"]
+[gd_scene load_steps=5 format=3 uid="uid://dmqghto7aslfc"]
 
-[ext_resource type="Texture2D" uid="uid://dh3kfq464bhis" path="res://Frames/Node.png" id="1_7poir"]
+[ext_resource type="Texture2D" uid="uid://dh3kfq464bhis" path="res://Frames/node.png" id="1_7poir"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l0swx"]
 
