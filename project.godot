@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.129412, 0.407843, 0.411765, 1)
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneGlobal="*res://Scenes/scene_global.gd"
+
 [input]
 
 click={
