@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmqghto7aslfc"]
+
+[ext_resource type="Texture2D" uid="uid://bre38yo8ywa0x" path="res://Frames/node.png" id="1_pwb12"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0swx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5fyk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0ial"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pwb12")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mycelia Node" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+material = SubResource("ShaderMaterial_l0swx")
+shape = SubResource("CircleShape2D_y5fyk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -1)
+scale = Vector2(0.431373, 0.428571)
+sprite_frames = SubResource("SpriteFrames_m0ial")
