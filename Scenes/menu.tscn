@@ -1,62 +1,88 @@
-[gd_scene load_steps=4 format=3 uid="uid://oxau8xdy63ty"]
+[gd_scene load_steps=11 format=3 uid="uid://oxau8xdy63ty"]
 
 [ext_resource type="Script" path="res://Scenes/menu.gd" id="1_bbhou"]
+[ext_resource type="Shader" path="res://Scenes/menu.gdshader" id="1_p0jvd"]
 [ext_resource type="AudioStream" uid="uid://cei5o8xbl1buc" path="res://audio/main theme.wav" id="2_t5ueb"]
+[ext_resource type="Texture2D" uid="uid://c6v53cvyj78qo" path="res://Scenes/mushrooms_w_trans.png" id="3_p4xxn"]
+[ext_resource type="Texture2D" uid="uid://cc5xvjn1rnywc" path="res://Scenes/main menu image.png" id="4_6th6e"]
+[ext_resource type="Script" path="res://Scenes/texturelayer.gd" id="4_g2lq1"]
 
-[sub_resource type="Environment" id="Environment_pssit"]
-background_mode = 1
-background_color = Color(0.129412, 0.407843, 0.411765, 1)
-background_energy_multiplier = 1.18
-ambient_light_color = Color(1, 1, 1, 1)
-glow_enabled = true
-glow_intensity = 1.89
-glow_strength = 1.06
-glow_hdr_threshold = 1.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_46dd8"]
+shader = ExtResource("1_p0jvd")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6uui4"]
+frequency = 0.016
+fractal_octaves = 8
+fractal_lacunarity = 3.0
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uqmnj"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_6uui4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_msq1n"]
+shader = ExtResource("1_p0jvd")
+shader_parameter/distortionTexture = SubResource("NoiseTexture2D_uqmnj")
 
 [node name="Menu" type="Control"]
+material = SubResource("ShaderMaterial_46dd8")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.00357, 1.0028)
 script = ExtResource("1_bbhou")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_pssit")
-
 [node name="Label" type="Label" parent="."]
-modulate = Color(1.5, 1.5, 1.5, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -198.5
-offset_top = -93.0
-offset_right = 198.5
-offset_bottom = 93.0
+offset_left = -208.314
+offset_top = -94.6419
+offset_right = 200.686
+offset_bottom = 98.358
 grow_horizontal = 2
 grow_vertical = 2
-theme_type_variation = &"HeaderLarge"
-theme_override_colors/font_color = Color(0.286275, 0.627451, 0.470588, 1)
-theme_override_colors/font_outline_color = Color(0.121569, 0.141176, 0.129412, 1)
-theme_override_constants/outline_size = 38
-theme_override_font_sizes/font_size = 136
-text = "Decay
-"
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.286275, 0.627451, 0.470588, 1)
+theme_override_colors/font_outline_color = Color(0.286275, 0.627451, 0.470588, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 140
+text = "Decay"
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(144.484, 21.9386)
+rotation = 2.77836
+scale = Vector2(0.603744, 1.02891)
+texture = ExtResource("3_p4xxn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1016.37, 667.133)
+rotation = -0.24177
+scale = Vector2(0.737179, 0.953936)
+texture = ExtResource("3_p4xxn")
+
+[node name="texturelayer" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_msq1n")
+position = Vector2(526.12, 315.118)
+scale = Vector2(4.84992, 5.04512)
+texture = ExtResource("4_6th6e")
+script = ExtResource("4_g2lq1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -97.0
-offset_right = 302.0
-offset_bottom = 8.0
+offset_left = 28.8967
+offset_top = -96.5434
+offset_right = 306.897
+offset_bottom = 8.4566
 grow_vertical = 0
 
 [node name="start_button" type="Button" parent="VBoxContainer"]
