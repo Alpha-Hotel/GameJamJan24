@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://kpew161kqykl"]
+
+[ext_resource type="PackedScene" uid="uid://dmqghto7aslfc" path="res://Scenes/mycelia_node.tscn" id="1_r0owm"]
+
+[node name="Test" type="Node"]
+
+[node name="Mycelia Node" parent="." instance=ExtResource("1_r0owm")]
+position = Vector2(598, 303)
+
+[node name="Mycelia Node2" parent="." instance=ExtResource("1_r0owm")]
+position = Vector2(135, 309)
