@@ -36,6 +36,9 @@ func add_mycelia_node(pos):
 	var node = mycelia_node.instantiate()
 	add_child(node)
 	node.position = pos
+	node.add_to_group("mycelia_nodes")
+	print(get_tree().get_nodes_in_group("mycelia_nodes"))
+
 
 func check_collision(pos):
 	#This function uses the Collider node to detect collisions at a given position pos
