@@ -4,7 +4,7 @@ const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	const voronai_vertices 
 	pass # Replace with function body.
 
 
