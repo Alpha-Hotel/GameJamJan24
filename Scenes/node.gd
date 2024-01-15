@@ -5,11 +5,17 @@ const resource_node = preload("res://Scenes/resource_node.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	spawn_resource_nodes(10)
+	get_attributes_of_all()
 	pass # Replace with function body.
 
 var rng1 = RandomNumberGenerator.new()
 var rng2 = RandomNumberGenerator.new()
+
+func get_attributes_of_all():
+	
+	for i in get_tree().get_nodes_in_group("resource"):
+		print (get_tree().get_nodes_in_group("resource"))
 
 func spawn_resource_nodes(num_spawn):
 	
@@ -24,8 +30,8 @@ func spawn_resource_nodes(num_spawn):
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-		
-	spawn_resource_nodes(1)
+	
+	#TODO add process that removes nutrients, add sucky sucky
 	
 	pass
 

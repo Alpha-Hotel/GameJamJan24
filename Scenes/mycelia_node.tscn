@@ -9,6 +9,15 @@ script/source = "extends Area2D
 func _ready():
 	$\"/root/SceneGlobal\".child_node_pass(self)
 
+## store resource nodes in library
+## functoin to add/remove resources from list of active resource nodes
+
+func register_resource_in_library():
+	pass
+
+func sucky_sucky(resource_node):
+	resource_node.pour_out_energy(1)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
