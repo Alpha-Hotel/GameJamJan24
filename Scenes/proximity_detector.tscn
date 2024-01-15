@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://bhesre0240xbq"]
-
-[node name="ProximityDetector" type="Node2D"]
-
-[node name="Area2D" type="Area2D" parent="."]

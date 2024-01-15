@@ -12,14 +12,6 @@ shader = ExtResource("2_2ci3u")
 [node name="main" type="Node2D"]
 script = ExtResource("1_bya8y")
 
-[node name="Label" type="Label" parent="."]
-z_index = 1
-offset_left = 261.0
-offset_top = 221.0
-offset_right = 670.0
-offset_bottom = 244.0
-text = "THIS IS THE MAIN AREA LMFAO EIRHGOEIARHGEORIH"
-
 [node name="Collider" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_lw3ts")
 target_position = Vector2(0, 0)
