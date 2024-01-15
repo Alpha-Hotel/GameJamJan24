@@ -9,4 +9,5 @@ script = ExtResource("1_t50d0")
 
 [node name="Collider" type="ShapeCast2D" parent="." groups=["mycelia_nodes"]]
 shape = SubResource("CircleShape2D_fptqp")
+target_position = Vector2(0, 0)
 collide_with_areas = true
