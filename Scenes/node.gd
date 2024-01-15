@@ -1,23 +1,26 @@
 extends Node
 
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
-
+var rng = RandomNumberGenerator.new()
+var voronai_vertices : Array
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	const voronai_vertices 
+	#print(get_viewport().get_visible_rect().size)
+	voronai_vertices = [rng.randf_range(0, get_viewport().get_visible_rect().size.x), rng.randf_range(0, get_viewport().get_visible_rect().size.y)]
+	print("vertices ", voronai_vertices)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print($Collider.is_colliding)
+
 	pass
 	
 func _input(event):
 	
 	if event is InputEventMouseButton and not event.is_action_released("click"):
 		# This runs if the mouse is clicked 
-		print("Mouse Click/Unclick at: ", )
+		print("Mouse Click/Unclick at: ", event.position)
 		if not check_collision(event.position):
 			# Checks collision at the mouse posiiton
 			print("no collision")

@@ -1,14 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn8o2yey1228"]
+[gd_scene load_steps=5 format=3 uid="uid://dn8o2yey1228"]
 
 [ext_resource type="Script" path="res://Scenes/node.gd" id="1_bya8y"]
+[ext_resource type="Shader" path="res://Scenes/voronai.gdshader" id="2_2ci3u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lw3ts"]
 radius = 10.83
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esvjv"]
+shader = ExtResource("2_2ci3u")
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_bya8y")
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 offset_left = 261.0
 offset_top = 221.0
 offset_right = 670.0
@@ -20,3 +25,12 @@ shape = SubResource("CircleShape2D_lw3ts")
 target_position = Vector2(0, 0)
 margin = 1.8
 collide_with_areas = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_esvjv")
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 645.0
+color = Color(0.207843, 0.164706, 0.431373, 1)
