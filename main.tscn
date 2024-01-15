@@ -1,17 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn8o2yey1228"]
+[gd_scene load_steps=3 format=3 uid="uid://dn8o2yey1228"]
 
 [ext_resource type="Script" path="res://Scenes/node.gd" id="1_t50d0"]
-[ext_resource type="Shader" path="res://Scenes/voronai.gdshader" id="2_d5ia1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fptqp"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r3uyk"]
-shader = ExtResource("2_d5ia1")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_8btnd"]
-
 [node name="main" type="Node2D"]
-z_index = -1
 script = ExtResource("1_t50d0")
 
 [node name="Collider" type="ShapeCast2D" parent="." groups=["mycelia_nodes"]]
@@ -41,9 +34,3 @@ offset_right = 40.0
 offset_bottom = 43.0
 grow_horizontal = 2
 vertical_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_r3uyk")
-position = Vector2(575.25, 323.75)
-scale = Vector2(1151.5, 648.5)
-texture = SubResource("CanvasTexture_8btnd")
