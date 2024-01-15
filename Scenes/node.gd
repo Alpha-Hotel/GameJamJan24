@@ -12,6 +12,14 @@ func _ready():
 func _process(delta):
 	#print($Collider.is_colliding)
 	pass
+
+var closest_node_1
+var closest_node_2
+var line
+## this function finds the two closest nodes, and passes the positions to 
+##the two variables defined above to connect lines to.
+func find_closest_nodes():
+	pass
 	
 func _input(event):
 	
@@ -24,6 +32,9 @@ func _input(event):
 			add_mycelia_node(event.position)
 		else:
 			print("collision")
+		##print("Mouse Click/Unclick at: ", event.position)
+		add_mycelia_node(event.position)
+		add_connecting_lines(event.position, closest_node_1, closest_node_2)
 		
 	elif event is InputEventMouseMotion:
 		#print("Mouse Motion at: ", event.position)
@@ -35,7 +46,10 @@ func add_mycelia_node(pos):
 	# This function adds a mycelia node at a given position (pos)
 	var node = mycelia_node.instantiate()
 	add_child(node)
+	print(node)
+	
 	node.position = pos
+<<<<<<< HEAD
 	node.add_to_group("mycelia_nodes")
 	#print(get_tree().get_nodes_in_group("mycelia_nodes"))
 
@@ -47,3 +61,9 @@ func check_collision(pos):
 	# prior to collision check. 
 	$Collider.force_shapecast_update() 
 	return $Collider.is_colliding()
+=======
+	
+func add_connecting_lines(placed_pos, pos_2, pos_3):
+	pass
+	
+>>>>>>> pixel_shader
