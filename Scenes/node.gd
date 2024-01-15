@@ -4,7 +4,7 @@ const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	$HUD/Counter_number.text = "5"
 	pass # Replace with function body.
 
 
@@ -26,10 +26,11 @@ func _input(event):
 	if event is InputEventMouseButton and not event.is_action_released("click"):
 		# This runs if the mouse is clicked 
 		print("Mouse Click/Unclick at: ", )
-		if not check_collision(event.position):
+		if not check_collision(event.position) and int($HUD/Counter_number.text)>0:
 			# Checks collision at the mouse posiiton
 			print("no collision")
 			add_mycelia_node(event.position)
+			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 		else:
 			print("collision")
 		##print("Mouse Click/Unclick at: ", event.position)

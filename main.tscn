@@ -11,3 +11,26 @@ script = ExtResource("1_t50d0")
 shape = SubResource("CircleShape2D_fptqp")
 target_position = Vector2(0, 0)
 collide_with_areas = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Counter_UI" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.0
+offset_right = 44.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Nodes Left:"
+horizontal_alignment = 1
+
+[node name="Counter_number" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 43.0
+grow_horizontal = 2
+vertical_alignment = 1
