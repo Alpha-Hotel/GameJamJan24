@@ -3,7 +3,7 @@ extends Control
 
 @onready var start_button = $VBoxContainer/start_button as Button
 @onready var quit_button = $VBoxContainer/quit_button as Button
-@onready var start_level = preload("res://main.tscn") as PackedScene
+@onready var start_level = preload("res://Scenes/main.tscn") as PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
