@@ -1,16 +1,32 @@
 extends Node
 
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
+const resource_node = preload("res://Scenes/resource_node.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
 	pass # Replace with function body.
 
+var rng1 = RandomNumberGenerator.new()
+var rng2 = RandomNumberGenerator.new()
 
+func spawn_resource_nodes(num_spawn):
+	
+	for i in num_spawn:
+		
+		var randx = rng1.randf_range(0.0, 1152.0)
+		var randy = rng2.randf_range(0.0, 648.0)
+		var node_copy = resource_node.instantiate()
+		add_child(node_copy)
+		node_copy.position.x = randx
+		node_copy.position.y = randy
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print($Collider.is_colliding)
+		
+	spawn_resource_nodes(1)
+	
 	pass
 
 var closest_node_1

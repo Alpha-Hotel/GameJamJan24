@@ -9,10 +9,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#print($Collider.is_colliding)
-	pass
-
 var closest_node_1
 var closest_node_2
 var line
@@ -27,6 +23,7 @@ func _input(event):
 		# This runs if the mouse is clicked 
 		print("main")
 		print("Mouse Click/Unclick at: ", )
+		
 		if not check_collision(event.position):
 			# Checks collision at the mouse posiiton
 			print("no collision")
@@ -39,8 +36,6 @@ func _input(event):
 	elif event is InputEventMouseMotion:
 		#print("Mouse Motion at: ", event.position)
 		pass
-
-
 
 func add_mycelia_node(pos):
 	# This function adds a mycelia node at a given position (pos)
@@ -61,5 +56,9 @@ func check_collision(pos):
 	return $Collider.is_colliding()
 	
 func add_connecting_lines(placed_pos, pos_2, pos_3):
+	pass
+
+func _process(delta):
+	#print($Collider.is_colliding)
 	pass
 	
