@@ -49,7 +49,6 @@ func add_mycelia_node(pos):
 	print(node)
 	
 	node.position = pos
-<<<<<<< HEAD
 	node.add_to_group("mycelia_nodes")
 	#print(get_tree().get_nodes_in_group("mycelia_nodes"))
 
@@ -61,9 +60,7 @@ func check_collision(pos):
 	# prior to collision check. 
 	$Collider.force_shapecast_update() 
 	return $Collider.is_colliding()
-=======
 	
 func add_connecting_lines(placed_pos, pos_2, pos_3):
 	pass
 	
->>>>>>> pixel_shader
