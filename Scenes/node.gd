@@ -1,7 +1,7 @@
 extends Node
 
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
-
+var signal_growing = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HUD/Counter_number.text = "5"
@@ -9,13 +9,11 @@ func _ready():
 	add_child(node)
 	node.position = Vector2(400,400)
 	node.add_to_group("resource_nodes")
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print($Collider.is_colliding)
-	pass
+	update_node_signal(delta)
+
 
 var closest_node_1
 var closest_node_2
@@ -39,8 +37,6 @@ func _input(event):
 		else:
 			if int($HUD/Counter_number.text) > 0:
 				print("collision ", $Collider.scale)
-		##print("Mouse Click/Unclick at: ", event.position)
-
 		add_connecting_lines(event.position, closest_node_1, closest_node_2)
 		
 	elif event is InputEventMouseMotion:
@@ -55,8 +51,16 @@ func add_mycelia_node(pos):
 	add_child(node)
 	node.position = pos
 	node.add_to_group("mycelia_nodes")
-	#print(get_tree().get_nodes_in_group("mycelia_nodes"))
+	ready_node_signal(pos)
+	
 
+func update_node_signal(delta):
+	if $HUD/Node_signal.scale[0] < 1 and signal_growing==true:
+		print($HUD/Node_signal.scale[0])
+		$HUD/Node_signal.scale = Vector2($HUD/Node_signal.scale[0]+.4*delta, $HUD/Node_signal.scale[0]+.1*delta)
+	elif signal_growing == true:
+		$HUD/Node_signal.visible = false
+		signal_growing = false
 
 func check_node_collision(pos):
 	#This function uses the Collider node to detect collisions at a given position pos
@@ -65,6 +69,14 @@ func check_node_collision(pos):
 	# prior to collision check. 
 	$Collider.force_shapecast_update() 
 	return $Collider.is_colliding()
+	
+func ready_node_signal(pos):
+	# This gets the node signal ready to appear and then grow on screen
+	# It is intended to be the visual component of expanding collider
+	$HUD/Node_signal.position = pos
+	$HUD/Node_signal.visible = true
+	$HUD/Node_signal.scale = Vector2(.25,.25)
+	signal_growing =true
 
 func expanding_collision():	
 	$Collider.scale =Vector2(20,20)
