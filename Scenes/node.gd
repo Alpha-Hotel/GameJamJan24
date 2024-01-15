@@ -33,7 +33,7 @@ func _input(event):
 		else:
 			print("collision")
 		##print("Mouse Click/Unclick at: ", event.position)
-		add_mycelia_node(event.position)
+
 		add_connecting_lines(event.position, closest_node_1, closest_node_2)
 		
 	elif event is InputEventMouseMotion:
