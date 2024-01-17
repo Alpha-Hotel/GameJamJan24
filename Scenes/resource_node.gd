@@ -1,0 +1,29 @@
+extends Area2D
+
+@export var resources : int = 100
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func pour_out_energy(amount):
+	
+	if amount < 1:
+		pass
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+	
+func consume_resources(consumption_amount : int) -> int:
+		var consumed_resources = 0
+		if resources < consumption_amount:
+			consumed_resources = resources
+			resources = 0
+		else:
+			consumed_resources = consumption_amount
+			resources -= consumption_amount
+		return consumed_resources
+			
+		

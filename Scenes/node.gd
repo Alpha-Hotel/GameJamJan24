@@ -1,12 +1,16 @@
 extends Node
 
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
+const resource_node = preload("res://Scenes/resource_node.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HUD/Counter_number.text = "5"
-	pass # Replace with function body.
-
+	spawn_resource_nodes(10)
+	get_attributes_of_all()
+	
+var rng1 = RandomNumberGenerator.new()
+var rng2 = RandomNumberGenerator.new()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -41,8 +45,6 @@ func _input(event):
 		#print("Mouse Motion at: ", event.position)
 		pass
 
-
-
 func add_mycelia_node(pos):
 	# This function adds a mycelia node at a given position (pos)
 	var node = mycelia_node.instantiate()
@@ -65,3 +67,18 @@ func check_collision(pos):
 func add_connecting_lines(placed_pos, pos_2, pos_3):
 	pass
 	
+func get_attributes_of_all():
+	
+	for i in get_tree().get_nodes_in_group("resource"):
+		print (get_tree().get_nodes_in_group("resource"))
+	
+func spawn_resource_nodes(num_spawn):
+	
+	for i in num_spawn:
+		
+		var randx = rng1.randf_range(0.0, 1152.0)
+		var randy = rng2.randf_range(0.0, 648.0)
+		var node_copy = resource_node.instantiate()
+		add_child(node_copy)
+		node_copy.position.x = randx
+		node_copy.position.y = randy

@@ -5,13 +5,57 @@
 [sub_resource type="GDScript" id="GDScript_fpcbi"]
 script/source = "extends Area2D
 
+var nutrients : int = 0
+var nutrient_nodes : Dictionary = {}
+@export var nutrient_consumption_amount : int = 1
+@export var nutrient_consumption_rate : float = 1.0
+var nutrient_consumption_timer : Timer = Timer.new()
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$\"/root/SceneGlobal\".child_node_pass(self)
-
+	# Make nutrient timer a child of mycelia node, configure, start, and connect it to _consume_nutrients func
+	add_child(nutrient_consumption_timer)
+	nutrient_consumption_timer.wait_time = nutrient_consumption_rate
+	nutrient_consumption_timer.start()
+	nutrient_consumption_timer.timeout.connect(_consume_nutrients)
+	 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _consume_nutrients():
+	var nutrient_node_keys : Array = nutrient_nodes.keys()
+	for key in nutrient_node_keys:
+		var consumed_nutrients : int = nutrient_nodes[key].consume_resources(nutrient_consumption_amount)
+		if consumed_nutrients == 0:
+			remove_nutrient_node(key)
+		else:
+			add_nutrients(consumed_nutrients)
+	nutrient_consumption_timer.wait_time = nutrient_consumption_rate 
+
+func add_nutrient_node(nutrient_node):
+	nutrient_nodes.merge({nutrient_node : nutrient_node})
+
+func remove_nutrient_node(nutrient_node):
+	nutrient_nodes.erase(nutrient_node)
+
+func add_nutrients(amount : int):
+	nutrients += amount
+
+func remove_nutrients(amount : int) -> bool:
+	if nutrients == 0:
+		return false
+		pass
+	if nutrients < amount:
+		nutrients -= nutrients
+	else:
+		nutrients -= amount
+	return true
+	
+	
+		
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l0swx"]
