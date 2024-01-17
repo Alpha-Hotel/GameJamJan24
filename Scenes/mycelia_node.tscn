@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmqghto7aslfc"]
+[gd_scene load_steps=10 format=3 uid="uid://dmqghto7aslfc"]
 
 [ext_resource type="Texture2D" uid="uid://dh3kfq464bhis" path="res://Frames/node.png" id="1_7poir"]
+[ext_resource type="Texture2D" uid="uid://cmfvit3r28wvv" path="res://Frames/Particle.png" id="2_q2fg8"]
 
 [sub_resource type="GDScript" id="GDScript_fpcbi"]
 script/source = "extends Area2D
@@ -29,6 +30,30 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_650lg"]
+min_value = -20.0
+max_value = 50.0
+_data = [Vector2(0.121951, -2.30769), 0.0, 0.0, 0, 0, Vector2(0.243902, 5.38462), 0.0, 0.0, 0, 0, Vector2(0.762195, -6.15385), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h6tg0"]
+curve = SubResource("Curve_650lg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ud70"]
+lifetime_randomness = 0.05
+particle_flag_disable_z = true
+spread = 180.0
+orbit_velocity_min = 0.251
+orbit_velocity_max = 0.791
+radial_velocity_min = 41.67
+radial_velocity_max = 41.67
+radial_velocity_curve = SubResource("CurveTexture_h6tg0")
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 47.92
+tangential_accel_max = 52.08
+damping_max = 72.605
+turbulence_enabled = true
+
 [node name="Mycelia Node" type="Area2D"]
 script = SubResource("GDScript_fpcbi")
 metadata/_edit_group_ = true
@@ -43,3 +68,10 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 position = Vector2(1, 1)
 scale = Vector2(1.7, 1.691)
 sprite_frames = SubResource("SpriteFrames_m0ial")
+
+[node name="Spores" type="GPUParticles2D" parent="."]
+amount = 85
+process_material = SubResource("ParticleProcessMaterial_4ud70")
+texture = ExtResource("2_q2fg8")
+lifetime = 4.0
+explosiveness = 1.0
