@@ -1,6 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmqghto7aslfc"]
+[gd_scene load_steps=6 format=3 uid="uid://dmqghto7aslfc"]
 
 [ext_resource type="Texture2D" uid="uid://dh3kfq464bhis" path="res://Frames/node.png" id="1_7poir"]
+
+[sub_resource type="GDScript" id="GDScript_fpcbi"]
+script/source = "extends Area2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$\"/root/SceneGlobal\".child_node_pass(self)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l0swx"]
 
@@ -18,11 +30,13 @@ animations = [{
 }]
 
 [node name="Mycelia Node" type="Area2D"]
+script = SubResource("GDScript_fpcbi")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 material = SubResource("ShaderMaterial_l0swx")
 shape = SubResource("CircleShape2D_y5fyk")
+one_way_collision_margin = 1.2
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
