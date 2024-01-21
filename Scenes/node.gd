@@ -29,9 +29,9 @@ func _input(event):
 	if event is InputEventMouseButton and not event.is_action_released("click"):
 		# This runs if the mouse is clicked 
 		print("Mouse Click/Unclick at: ", )
-		if not check_node_collision(event.position) and int($HUD/Counter_number.text)>0:
+		if check_node_collision(event.position)[1].is_empty() and int($HUD/Counter_number.text)>0:
 			# Checks collision at the mouse posiiton
-			print("no collision")
+			
 			add_mycelia_node(event.position)
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
@@ -42,7 +42,7 @@ func _input(event):
 
 		
 	elif event is InputEventMouseMotion:
-		if check_node_collision(event.position) or expanding_collision()[1].is_empty():
+		if not check_node_collision(event.position)[1].is_empty() or expanding_collision()[1].is_empty():
 			Input.set_custom_mouse_cursor(cursor_x, 0, Vector2(7,7))
 		else:
 			Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
@@ -62,15 +62,14 @@ func check_node_collision(pos):
 	$Collider.position = pos
 	# Normally collider updates at the physics update step. This forces it to update
 	# prior to collision check. 
-	$Collider.force_shapecast_update() 
-	return $Collider.is_colliding()
+	$Collider.force_shapecast_update()
+	return sort_collisions($Collider.collision_result)
 
 func expanding_collision():	
 	# Grows the collider to the size of particle effect, checks for adjacent nodes
 	# Returns nodes that were collided with
 	$Collider.scale =Vector2(10,10)
 	$Collider.force_shapecast_update() 
-	print("expanding collision ", $Collider.is_colliding())
 	$Collider.scale =Vector2(1,1)
 	return sort_collisions($Collider.collision_result)
 	
