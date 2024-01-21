@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://kpew161kqykl"]
 
 [ext_resource type="PackedScene" uid="uid://dmqghto7aslfc" path="res://Scenes/mycelia_node.tscn" id="1_r0owm"]
-[ext_resource type="Script" path="res://Scenes/test.gd" id="1_vkj3y"]
+[ext_resource type="Script" path="res://Scenes/placeholder_lvl.gd" id="1_vkj3y"]
 
 [node name="Test" type="Node"]
 script = ExtResource("1_vkj3y")
