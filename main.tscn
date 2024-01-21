@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn8o2yey1228"]
+[gd_scene load_steps=8 format=3 uid="uid://dn8o2yey1228"]
 
 [ext_resource type="Script" path="res://Scenes/node.gd" id="1_t50d0"]
+[ext_resource type="AudioStream" uid="uid://c2ntqe7b27mpy" path="res://audio/button_1.wav" id="2_8l1u2"]
+[ext_resource type="AudioStream" uid="uid://b81un34gebm57" path="res://audio/button_2.wav" id="3_b1a76"]
+[ext_resource type="AudioStream" uid="uid://b4eyrtifagyhf" path="res://audio/button_3.wav" id="4_dinqg"]
+[ext_resource type="AudioStream" uid="uid://blh4agjpqwveg" path="res://audio/button_4.wav" id="5_7kq4j"]
+[ext_resource type="AudioStream" uid="uid://b7igkegtesyht" path="res://audio/button_5.wav" id="6_es4kc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fptqp"]
 
@@ -34,3 +39,18 @@ offset_right = 40.0
 offset_bottom = 43.0
 grow_horizontal = 2
 vertical_alignment = 1
+
+[node name="button_sound_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_8l1u2")
+
+[node name="button_sound_2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b1a76")
+
+[node name="button_sound_3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dinqg")
+
+[node name="button_sound_4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7kq4j")
+
+[node name="button_sound_5" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_es4kc")

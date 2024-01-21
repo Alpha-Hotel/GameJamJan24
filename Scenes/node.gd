@@ -33,6 +33,18 @@ func _input(event):
 			# Checks collision at the mouse posiiton
 			
 			add_mycelia_node(event.position)
+			var sound_rng = randi_range(1, 5)
+			if sound_rng == 1:
+				$button_sound_1.play()
+			elif sound_rng == 2:
+				$button_sound_2.play()
+			elif sound_rng == 3:
+				$button_sound_3.play()
+			elif sound_rng == 4:
+				$button_sound_4.play()
+			elif sound_rng == 5:
+				$button_sound_5.play()
+				
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
 			add_connections(event.position, collisions[1])
@@ -72,7 +84,7 @@ func expanding_collision():
 	$Collider.force_shapecast_update() 
 	$Collider.scale =Vector2(1,1)
 	return sort_collisions($Collider.collision_result)
-	
+
 func add_connections(pos1, pos_list):
 	# This function adds a connection line with nodes at two given positions (pos1, pos2)
 	for pos2 in pos_list:
