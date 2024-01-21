@@ -55,14 +55,7 @@ func add_mycelia_node(pos):
 	#ready_node_signal(pos)
 	
 
-'''func update_node_signal(delta):
-	if $HUD/Node_signal.scale[0] < 1 and signal_growing==true:
-		print($HUD/Node_signal.scale[0])
-		$HUD/Node_signal.scale = Vector2($HUD/Node_signal.scale[0]+.4*delta, $HUD/Node_signal.scale[0]+.1*delta)
-	elif signal_growing == true:
-		$HUD/Node_signal.visible = false
-		signal_growing = false
-'''
+
 func check_node_collision(pos):
 	#This function uses the Collider node to detect collisions at a given position pos
 	$Collider.position = pos
@@ -70,17 +63,9 @@ func check_node_collision(pos):
 	# prior to collision check. 
 	$Collider.force_shapecast_update() 
 	return $Collider.is_colliding()
-	
-func ready_node_signal(pos):
-	# This gets the node signal ready to appear and then grow on screen
-	# It is intended to be the visual component of expanding collider
-	$HUD/Node_signal.position = pos
-	$HUD/Node_signal.visible = true
-	$HUD/Node_signal.scale = Vector2(.25,.25)
-	#signal_growing =true
 
 func expanding_collision():	
-	$Collider.scale =Vector2(20,20)
+	$Collider.scale =Vector2(10,10)
 	$Collider.force_shapecast_update() 
 	print("expanding collision ", $Collider.is_colliding())
 	$Collider.scale =Vector2(1,1)
