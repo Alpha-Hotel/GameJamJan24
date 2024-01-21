@@ -6,13 +6,12 @@ var signal_growing = false
 func _ready():
 	$HUD/Counter_number.text = "5"
 	var node = mycelia_node.instantiate()
-	add_child(node)
-	node.position = Vector2(400,400)
-	node.add_to_group("resource_nodes")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	update_node_signal(delta)
+	#update_node_signal(delta)
+	pass
 
 
 var closest_node_1
@@ -51,7 +50,7 @@ func add_mycelia_node(pos):
 	add_child(node)
 	node.position = pos
 	node.add_to_group("mycelia_nodes")
-	ready_node_signal(pos)
+	#ready_node_signal(pos)
 	
 
 func update_node_signal(delta):

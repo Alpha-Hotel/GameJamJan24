@@ -9,6 +9,7 @@ script/source = "extends Area2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$\"/root/SceneGlobal\".child_node_pass(self)
+	$Spores.emitting = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -70,8 +71,12 @@ scale = Vector2(1.7, 1.691)
 sprite_frames = SubResource("SpriteFrames_m0ial")
 
 [node name="Spores" type="GPUParticles2D" parent="."]
+emitting = false
 amount = 85
 process_material = SubResource("ParticleProcessMaterial_4ud70")
 texture = ExtResource("2_q2fg8")
-lifetime = 4.0
-explosiveness = 1.0
+lifetime = 2.5
+one_shot = true
+explosiveness = 0.84
+interpolate = false
+trail_enabled = true
