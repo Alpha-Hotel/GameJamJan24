@@ -1,7 +1,5 @@
 extends Node
 
-signal kill_node
-
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
 const danger_node = preload("res://Scenes/danger_node.tscn")
 const resource_node = preload("res://Scenes/resource_node.tscn")
@@ -39,8 +37,12 @@ func _input(event):
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
 			node.set_connection_list( add_connections(event.position, collisions[1]))
+			var score = collisions[1].size() * collisions[2].size()
+			node.set_score(score)
+			$HUD/Score.text = str(int($HUD/Score.text)+score)
+			
 			if not collisions[0].is_empty():
-				node.kill_node()
+				reduce_score(node.kill_node())
 				chain_death(collisions)
 		else:
 			if int($HUD/Counter_number.text) > 0:
@@ -110,7 +112,7 @@ func sort_collisions(list):
 		elif i["collider"] in get_tree().get_nodes_in_group("mycelia_nodes"):
 			#collider is mycelia node
 			new_list[1].append(i)
-		else:
+		else: #resource nodes
 			new_list[2].append(i)
 	return new_list
 
@@ -141,5 +143,9 @@ func spawn_danger_nodes(num_spawn_danger):
 
 func chain_death(collision_list):
 	for mycelia in collision_list[1]:
-		mycelia["collider"].kill_node()
-	
+		reduce_score(mycelia["collider"].kill_node())
+		
+func reduce_score(num:int):
+	print("reducing score by ", num)
+	$HUD/Score.text = str(int($HUD/Score.text)-num)
+

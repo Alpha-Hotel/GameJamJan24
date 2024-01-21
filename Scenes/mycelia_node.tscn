@@ -19,19 +19,22 @@ func kill_node():
 	
 	var tween = get_tree().create_tween()
 	for conn in connection_list:
-		
 		if is_instance_valid(conn):
 			tween.tween_property(conn, \"modulate\", Color.RED, 1)
 			tween.tween_callback(conn.queue_free)
-	
-	
 	if is_instance_valid(self):
 		tween.tween_property(self, \"modulate\", Color.RED, 1)
 		tween.tween_callback(queue_free).set_delay(1)
+		return int($Score.text)
+	else:
+		return 0
+	
 	
 func set_connection_list(l):
 	connection_list = l
 	
+func set_score(score:int):
+	$Score.text = str(score)
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l0swx"]
@@ -74,8 +77,8 @@ damping_max = 72.605
 turbulence_enabled = true
 
 [node name="Mycelia Node" type="Area2D"]
+z_index = -1
 script = SubResource("GDScript_fpcbi")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 material = SubResource("ShaderMaterial_l0swx")
@@ -98,3 +101,12 @@ one_shot = true
 explosiveness = 0.84
 interpolate = false
 trail_enabled = true
+
+[node name="Score" type="Label" parent="."]
+z_index = 2
+offset_left = -20.0
+offset_top = 11.0
+offset_right = 20.0
+offset_bottom = 34.0
+text = "14"
+horizontal_alignment = 1
