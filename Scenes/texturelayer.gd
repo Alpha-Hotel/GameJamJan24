@@ -2,7 +2,7 @@ extends Sprite2D
 
 var d := 0.0
 var radius := 75.0
-var speed := 1.0
+var speed := 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

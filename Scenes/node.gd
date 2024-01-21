@@ -44,6 +44,8 @@ func _input(event):
 			if not collisions[0].is_empty():
 				reduce_score(node.kill_node())
 				chain_death(collisions)
+			if not collisions[2].is_empty():
+				remove_resource_nodes(collisions)
 		else:
 			if int($HUD/Counter_number.text) > 0:
 				pass
@@ -149,3 +151,9 @@ func reduce_score(num:int):
 	print("reducing score by ", num)
 	$HUD/Score.text = str(int($HUD/Score.text)-num)
 
+
+		
+func remove_resource_nodes(collision_list):
+	for resource_node in collision_list[2]:
+		resource_node["collider"].queue_free()
+	
