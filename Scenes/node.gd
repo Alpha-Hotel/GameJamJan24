@@ -1,6 +1,7 @@
 extends Node
 
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
+const danger_node = preload("res://Scenes/danger_node.tscn")
 const resource_node = preload("res://Scenes/resource_node.tscn")
 const connector = preload("res://Scenes/connector.tscn")
 # Load the custom images for the mouse cursor.
@@ -11,7 +12,8 @@ var cursor_x = load("res://Frames/No_node.png")
 func _ready():
 	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
 	$HUD/Counter_number.text = "5"
-	spawn_resource_nodes(10)
+	spawn_resource_nodes(25)
+	spawn_danger_nodes(7)
 	get_attributes_of_all()
 	
 var rng1 = RandomNumberGenerator.new()
@@ -21,8 +23,6 @@ var rng2 = RandomNumberGenerator.new()
 func _process(delta):
 	#update_node_signal(delta)
 	pass
-
-
 
 func _input(event):
 	
@@ -55,7 +55,12 @@ func add_mycelia_node(pos):
 	node.position = pos
 	node.add_to_group("mycelia_nodes")
 
-
+func add_danger_node(pos_danger):
+	# This function adds a danger node at a given position (pos)
+	var node_danger = danger_node.instantiate()
+	add_child(node_danger)
+	node_danger.position = pos_danger
+	node_danger.add_to_group("mycelia_nodes")
 
 func check_node_collision(pos):
 	#This function uses the Collider node to detect collisions at a given position pos
@@ -94,8 +99,6 @@ func sort_collisions(list):
 			new_list[1].append(i)
 	return new_list
 
-
-
 func get_attributes_of_all():
 	
 	for i in get_tree().get_nodes_in_group("resource"):
@@ -108,6 +111,17 @@ func spawn_resource_nodes(num_spawn):
 		var randx = rng1.randf_range(0.0, 1152.0)
 		var randy = rng2.randf_range(0.0, 648.0)
 		var node_copy = resource_node.instantiate()
+		add_child(node_copy)
+		node_copy.position.x = randx
+		node_copy.position.y = randy
+		
+func spawn_danger_nodes(num_spawn_danger):
+	
+	for i in num_spawn_danger:
+		
+		var randx = rng1.randf_range(0.0, 1152.0)
+		var randy = rng2.randf_range(0.0, 648.0)
+		var node_copy = danger_node.instantiate()
 		add_child(node_copy)
 		node_copy.position.x = randx
 		node_copy.position.y = randy
