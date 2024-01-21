@@ -19,10 +19,15 @@ func kill_node():
 	
 	var tween = get_tree().create_tween()
 	for conn in connection_list:
-		tween.tween_property(conn, \"modulate\", Color.RED, 1)
-		tween.tween_callback(conn.queue_free)
-	tween.tween_property(self, \"modulate\", Color.RED, 1)
-	tween.tween_callback(queue_free).set_delay(1)
+		
+		if is_instance_valid(conn):
+			tween.tween_property(conn, \"modulate\", Color.RED, 1)
+			tween.tween_callback(conn.queue_free)
+	
+	
+	if is_instance_valid(self):
+		tween.tween_property(self, \"modulate\", Color.RED, 1)
+		tween.tween_callback(queue_free).set_delay(1)
 	
 func set_connection_list(l):
 	connection_list = l
