@@ -40,14 +40,13 @@ func _input(event):
 			var node = add_mycelia_node(event.position)
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
-			print(node.get_children())
 			node.set_connection_list( add_connections(event.position, collisions[1]))
 			if not collisions[0].is_empty():
 				node.kill_node()
 				chain_death(collisions)
 		else:
 			if int($HUD/Counter_number.text) > 0:
-				print("collision ", $Collider.scale)
+				pass
 
 		
 	elif event is InputEventMouseMotion:
@@ -94,7 +93,6 @@ func add_connections(pos1, pos_list):
 		conn.set_point_position(1, pos2.point * conn_transform)
 		conn.add_to_group("connectors")
 		connections_list.append(conn)
-	print(connections_list)
 	return connections_list
 
 func sort_collisions(list):
