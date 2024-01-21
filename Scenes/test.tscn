@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://kpew161kqykl"]
 
-[ext_resource type="PackedScene" uid="uid://cdfy34177dbav" path="res://Scenes/mycelia_node.tscn" id="1_r0owm"]
+[ext_resource type="PackedScene" uid="uid://dmqghto7aslfc" path="res://Scenes/mycelia_node.tscn" id="1_r0owm"]
 [ext_resource type="Script" path="res://Scenes/test.gd" id="1_vkj3y"]
 
 [node name="Test" type="Node"]

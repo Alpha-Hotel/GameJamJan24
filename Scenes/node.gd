@@ -1,12 +1,16 @@
 extends Node
 
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
-var signal_growing = false
+const resource_node = preload("res://Scenes/resource_node.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HUD/Counter_number.text = "5"
-	var node = mycelia_node.instantiate()
+	spawn_resource_nodes(10)
+	get_attributes_of_all()
 	
+var rng1 = RandomNumberGenerator.new()
+var rng2 = RandomNumberGenerator.new()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -42,8 +46,6 @@ func _input(event):
 		#print("Mouse Motion at: ", event.position)
 		pass
 
-
-
 func add_mycelia_node(pos):
 	# This function adds a mycelia node at a given position (pos)
 	var node = mycelia_node.instantiate()
@@ -53,14 +55,14 @@ func add_mycelia_node(pos):
 	#ready_node_signal(pos)
 	
 
-func update_node_signal(delta):
+'''func update_node_signal(delta):
 	if $HUD/Node_signal.scale[0] < 1 and signal_growing==true:
 		print($HUD/Node_signal.scale[0])
 		$HUD/Node_signal.scale = Vector2($HUD/Node_signal.scale[0]+.4*delta, $HUD/Node_signal.scale[0]+.1*delta)
 	elif signal_growing == true:
 		$HUD/Node_signal.visible = false
 		signal_growing = false
-
+'''
 func check_node_collision(pos):
 	#This function uses the Collider node to detect collisions at a given position pos
 	$Collider.position = pos
@@ -75,7 +77,7 @@ func ready_node_signal(pos):
 	$HUD/Node_signal.position = pos
 	$HUD/Node_signal.visible = true
 	$HUD/Node_signal.scale = Vector2(.25,.25)
-	signal_growing =true
+	#signal_growing =true
 
 func expanding_collision():	
 	$Collider.scale =Vector2(20,20)
@@ -101,3 +103,18 @@ func get_non_player(list):
 func add_connecting_lines(placed_pos, pos_2, pos_3):
 	pass
 	
+func get_attributes_of_all():
+	
+	for i in get_tree().get_nodes_in_group("resource"):
+		print (get_tree().get_nodes_in_group("resource"))
+	
+func spawn_resource_nodes(num_spawn):
+	
+	for i in num_spawn:
+		
+		var randx = rng1.randf_range(0.0, 1152.0)
+		var randy = rng2.randf_range(0.0, 648.0)
+		var node_copy = resource_node.instantiate()
+		add_child(node_copy)
+		node_copy.position.x = randx
+		node_copy.position.y = randy

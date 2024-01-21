@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://vnspkfnfk3sr"]
+
+[ext_resource type="Script" path="res://Scenes/resource_node.gd" id="1_tugmp"]
+[ext_resource type="Texture2D" uid="uid://bh1040vghgdsb" path="res://Frames/resource_node-removebg-preview.png" id="1_xb7v0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ixwa"]
+radius = 19.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7xq2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xb7v0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Resource Node" type="Area2D" groups=["resource"]]
+script = ExtResource("1_tugmp")
+
+[node name="rescource_collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1ixwa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.6, 1.52)
+sprite_frames = SubResource("SpriteFrames_7xq2f")
