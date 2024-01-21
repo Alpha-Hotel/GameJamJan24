@@ -42,6 +42,8 @@ func _input(event):
 			if not collisions[0].is_empty():
 				node.kill_node()
 				chain_death(collisions)
+			if not collisions[2].is_empty():
+				remove_resource_nodes(collisions)
 		else:
 			if int($HUD/Counter_number.text) > 0:
 				pass
@@ -142,4 +144,8 @@ func spawn_danger_nodes(num_spawn_danger):
 func chain_death(collision_list):
 	for mycelia in collision_list[1]:
 		mycelia["collider"].kill_node()
+		
+func remove_resource_nodes(collision_list):
+	for resource_node in collision_list[2]:
+		resource_node["collider"].queue_free()
 	

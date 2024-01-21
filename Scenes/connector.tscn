@@ -11,3 +11,4 @@ closed = true
 width = 30.0
 texture = ExtResource("1_w8vrb")
 texture_mode = 1
+metadata/_edit_group_ = true
