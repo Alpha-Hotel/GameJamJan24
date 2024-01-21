@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://vnspkfnfk3sr"]
+[gd_scene load_steps=5 format=3 uid="uid://d3mtgnkn0hbeh"]
 
 [ext_resource type="Script" path="res://Scenes/resource_node.gd" id="1_tugmp"]
 [ext_resource type="Texture2D" uid="uid://bh1040vghgdsb" path="res://Frames/resource_node-removebg-preview.png" id="1_xb7v0"]

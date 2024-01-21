@@ -3,8 +3,13 @@ extends Node
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
 const resource_node = preload("res://Scenes/resource_node.tscn")
 const connector = preload("res://Scenes/connector.tscn")
-# Called when the node enters the scene tree for the first time.
+# Load the custom images for the mouse cursor.
+var node_image = load("res://Frames/node.png")
+var cursor_x = load("res://Frames/No_node.png")
+
+
 func _ready():
+	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
 	$HUD/Counter_number.text = "5"
 	spawn_resource_nodes(10)
 	get_attributes_of_all()
@@ -12,32 +17,24 @@ func _ready():
 var rng1 = RandomNumberGenerator.new()
 var rng2 = RandomNumberGenerator.new()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	#update_node_signal(delta)
 	pass
 
 
-var closest_node_1
-var closest_node_2
-var line
-## this function finds the two closest nodes, and passes the positions to 
-##the two variables defined above to connect lines to.
-func find_closest_nodes():
-	pass
-	
+
 func _input(event):
 	
 	if event is InputEventMouseButton and not event.is_action_released("click"):
 		# This runs if the mouse is clicked 
 		print("Mouse Click/Unclick at: ", )
-		if not check_node_collision(event.position) and int($HUD/Counter_number.text)>0:
+		if check_node_collision(event.position)[1].is_empty() and int($HUD/Counter_number.text)>0:
 			# Checks collision at the mouse posiiton
-			print("no collision")
+			
 			add_mycelia_node(event.position)
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
-			
 			add_connections(event.position, collisions[1])
 		else:
 			if int($HUD/Counter_number.text) > 0:
@@ -45,8 +42,11 @@ func _input(event):
 
 		
 	elif event is InputEventMouseMotion:
-		#print("Mouse Motion at: ", event.position)
-		pass
+		if not check_node_collision(event.position)[1].is_empty() or expanding_collision()[1].is_empty():
+			Input.set_custom_mouse_cursor(cursor_x, 0, Vector2(7,7))
+		else:
+			Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
+
 
 func add_mycelia_node(pos):
 	# This function adds a mycelia node at a given position (pos)
@@ -54,8 +54,7 @@ func add_mycelia_node(pos):
 	add_child(node)
 	node.position = pos
 	node.add_to_group("mycelia_nodes")
-	#ready_node_signal(pos)
-	
+
 
 
 func check_node_collision(pos):
@@ -63,16 +62,15 @@ func check_node_collision(pos):
 	$Collider.position = pos
 	# Normally collider updates at the physics update step. This forces it to update
 	# prior to collision check. 
-	$Collider.force_shapecast_update() 
-	return $Collider.is_colliding()
+	$Collider.force_shapecast_update()
+	return sort_collisions($Collider.collision_result)
 
 func expanding_collision():	
+	# Grows the collider to the size of particle effect, checks for adjacent nodes
+	# Returns nodes that were collided with
 	$Collider.scale =Vector2(10,10)
 	$Collider.force_shapecast_update() 
-	print("expanding collision ", $Collider.is_colliding())
 	$Collider.scale =Vector2(1,1)
-	
-	
 	return sort_collisions($Collider.collision_result)
 	
 func add_connections(pos1, pos_list):
@@ -86,15 +84,14 @@ func add_connections(pos1, pos_list):
 		conn.add_to_group("connectors")
 
 func sort_collisions(list):
+	# returns a list with two lists. The zeroth list is for non-mycelia nodes
+	# the list with index 1 is all mycelia group nodes.
 	var new_list = [[],[]]
 	for i in list:
 		if not i["collider"] in get_tree().get_nodes_in_group("mycelia_nodes"):
 			new_list[0].append(i)
-			print("non-mycelia hit")
 		else:
 			new_list[1].append(i)
-			print("mycelia node hit")
-		
 	return new_list
 
 
