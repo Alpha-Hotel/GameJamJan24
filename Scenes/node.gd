@@ -2,7 +2,7 @@ extends Node
 
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
 const resource_node = preload("res://Scenes/resource_node.tscn")
-
+const connector = preload("res://Scenes/connector.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HUD/Counter_number.text = "5"
@@ -36,11 +36,13 @@ func _input(event):
 			print("no collision")
 			add_mycelia_node(event.position)
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
-			expanding_collision() #do something with this
+			var collisions = expanding_collision() #do something with this
+			
+			add_connections(event.position, collisions[1])
 		else:
 			if int($HUD/Counter_number.text) > 0:
 				print("collision ", $Collider.scale)
-		add_connecting_lines(event.position, closest_node_1, closest_node_2)
+
 		
 	elif event is InputEventMouseMotion:
 		#print("Mouse Motion at: ", event.position)
@@ -70,24 +72,33 @@ func expanding_collision():
 	print("expanding collision ", $Collider.is_colliding())
 	$Collider.scale =Vector2(1,1)
 	
-	return get_non_player($Collider.collision_result)
 	
+	return sort_collisions($Collider.collision_result)
+	
+func add_connections(pos1, pos_list):
+	# This function adds a connection line with nodes at two given positions (pos1, pos2)
+	for pos2 in pos_list:
+		var conn = connector.instantiate()
+		add_child(conn)
+		var conn_transform = conn.get_global_transform_with_canvas().affine_inverse()
+		conn.set_point_position(0, pos1 * conn_transform)
+		conn.set_point_position(1, pos2.point * conn_transform)
+		conn.add_to_group("connectors")
 
-func get_non_player(list):
-	var new_list = []
+func sort_collisions(list):
+	var new_list = [[],[]]
 	for i in list:
 		if not i["collider"] in get_tree().get_nodes_in_group("mycelia_nodes"):
-			new_list.append(i)
+			new_list[0].append(i)
 			print("non-mycelia hit")
 		else:
+			new_list[1].append(i)
 			print("mycelia node hit")
 		
 	return new_list
 
 
-func add_connecting_lines(placed_pos, pos_2, pos_3):
-	pass
-	
+
 func get_attributes_of_all():
 	
 	for i in get_tree().get_nodes_in_group("resource"):

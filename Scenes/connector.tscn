@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7pdd8t2ce2cg"]
+
+[ext_resource type="Texture2D" uid="uid://c7b1nw0kseyxd" path="res://Frames/nutrient_channel.png" id="1_w8vrb"]
+
+[node name="connector" type="Line2D"]
+z_index = -1
+texture_repeat = 2
+scale = Vector2(0.3, 0.3)
+points = PackedVector2Array(1636.67, 1130, 916.667, 1116.67)
+closed = true
+width = 30.0
+texture = ExtResource("1_w8vrb")
+texture_mode = 1
