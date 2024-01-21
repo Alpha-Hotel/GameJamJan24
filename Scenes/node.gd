@@ -1,5 +1,7 @@
 extends Node
 
+signal kill_node
+
 const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
 const resource_node = preload("res://Scenes/resource_node.tscn")
 const connector = preload("res://Scenes/connector.tscn")
@@ -10,9 +12,13 @@ var cursor_x = load("res://Frames/No_node.png")
 
 func _ready():
 	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
-	$HUD/Counter_number.text = "5"
+	$HUD/Counter_number.text = "50"
 	spawn_resource_nodes(10)
-	get_attributes_of_all()
+	#get_attributes_of_all()
+	var node = mycelia_node.instantiate()
+	add_child(node)
+	node.position = Vector2(500,300)
+	node.add_to_group("danger")
 	
 var rng1 = RandomNumberGenerator.new()
 var rng2 = RandomNumberGenerator.new()
@@ -28,14 +34,17 @@ func _input(event):
 	
 	if event is InputEventMouseButton and not event.is_action_released("click"):
 		# This runs if the mouse is clicked 
-		print("Mouse Click/Unclick at: ", )
 		if check_node_collision(event.position)[1].is_empty() and int($HUD/Counter_number.text)>0:
 			# Checks collision at the mouse posiiton
 			
-			add_mycelia_node(event.position)
+			var node = add_mycelia_node(event.position)
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
-			add_connections(event.position, collisions[1])
+			print(node.get_children())
+			node.set_connection_list( add_connections(event.position, collisions[1]))
+			if not collisions[0].is_empty():
+				node.kill_node()
+				chain_death(collisions)
 		else:
 			if int($HUD/Counter_number.text) > 0:
 				print("collision ", $Collider.scale)
@@ -54,6 +63,7 @@ func add_mycelia_node(pos):
 	add_child(node)
 	node.position = pos
 	node.add_to_group("mycelia_nodes")
+	return node
 
 
 
@@ -75,6 +85,7 @@ func expanding_collision():
 	
 func add_connections(pos1, pos_list):
 	# This function adds a connection line with nodes at two given positions (pos1, pos2)
+	var connections_list = []
 	for pos2 in pos_list:
 		var conn = connector.instantiate()
 		add_child(conn)
@@ -82,16 +93,23 @@ func add_connections(pos1, pos_list):
 		conn.set_point_position(0, pos1 * conn_transform)
 		conn.set_point_position(1, pos2.point * conn_transform)
 		conn.add_to_group("connectors")
+		connections_list.append(conn)
+	print(connections_list)
+	return connections_list
 
 func sort_collisions(list):
 	# returns a list with two lists. The zeroth list is for non-mycelia nodes
 	# the list with index 1 is all mycelia group nodes.
-	var new_list = [[],[]]
+	var new_list = [[], [], []]
 	for i in list:
-		if not i["collider"] in get_tree().get_nodes_in_group("mycelia_nodes"):
+		if i["collider"] in get_tree().get_nodes_in_group("danger"):
+			#collider is danger node
 			new_list[0].append(i)
-		else:
+		elif i["collider"] in get_tree().get_nodes_in_group("mycelia_nodes"):
+			#collider is mycelia node
 			new_list[1].append(i)
+		else:
+			new_list[2].append(i)
 	return new_list
 
 
@@ -102,12 +120,15 @@ func get_attributes_of_all():
 		print (get_tree().get_nodes_in_group("resource"))
 	
 func spawn_resource_nodes(num_spawn):
-	
 	for i in num_spawn:
-		
 		var randx = rng1.randf_range(0.0, 1152.0)
 		var randy = rng2.randf_range(0.0, 648.0)
 		var node_copy = resource_node.instantiate()
 		add_child(node_copy)
 		node_copy.position.x = randx
 		node_copy.position.y = randy
+
+func chain_death(collision_list):
+	for mycelia in collision_list[1]:
+		mycelia["collider"].kill_node()
+	
