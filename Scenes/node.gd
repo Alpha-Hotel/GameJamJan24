@@ -33,6 +33,7 @@ func _input(event):
 			# Checks collision at the mouse posiiton
 			
 			var node = add_mycelia_node(event.position)
+			select_play_audio()
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
 			node.set_connection_list( add_connections(event.position, collisions[1]))
@@ -156,6 +157,19 @@ func remove_resource_nodes(collision_list):
 	for resource_node in collision_list[2]:
 		resource_node["collider"].queue_free()
 		$HUD/Counter_number.text = str(int($HUD/Counter_number.text)+5)
+
+func select_play_audio():
+	var num_select = randi_range(1, 5)
+	if num_select == 1:
+		$AudioStreamPlayer.play()
+	elif num_select == 2:
+		$AudioStreamPlayer2.play()
+	elif num_select == 3:
+		$AudioStreamPlayer3.play()
+	elif num_select == 4:
+		$AudioStreamPlayer4.play()
+	elif num_select == 5:
+		$AudioStreamPlayer5.play()
 
 func show_player_hint(collision_list):
 	##check and send particles to danger node
