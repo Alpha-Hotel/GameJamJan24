@@ -41,11 +41,13 @@ func _input(event):
 			$HUD/Score.text = str(int($HUD/Score.text)+score)
 			
 			if not collisions[0].is_empty():
-				show_player_hint(collisions)
+				if not collisions[0].is_empty():
+					show_player_hint(collisions)
 				reduce_score(node.kill_node())
 				chain_death(collisions)
 			if not collisions[2].is_empty():
-				show_player_hint(collisions)
+				if not collisions[2].is_empty():
+					show_player_hint(collisions)
 				remove_resource_nodes(collisions)
 		else:
 			if int($HUD/Counter_number.text) > 0:
@@ -88,7 +90,7 @@ func expanding_collision():
 	$Collider.force_shapecast_update() 
 	$Collider.scale =Vector2(1,1)
 	return sort_collisions($Collider.collision_result)
-	
+
 func add_connections(pos1, pos_list):
 	# This function adds a connection line with nodes at two given positions (pos1, pos2)
 	var connections_list = []
@@ -158,13 +160,13 @@ func remove_resource_nodes(collision_list):
 
 func show_player_hint(collision_list):
 	##check and send particles to danger node
+	
 	if not collision_list[0].is_empty():
 		for danger_node in collision_list[0]:
 			#instantiate kids
 			var danger_node_hint = player_hint_danger_node.instantiate()
 			danger_node_hint.position = danger_node["point"]
 			add_child(danger_node_hint)
-			
 		pass
 		
 	##check and send particles to resource node
