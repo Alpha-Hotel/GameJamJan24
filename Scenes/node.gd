@@ -52,7 +52,6 @@ func _input(event):
 		else:
 			if int($HUD/Counter_number.text) > 0:
 				pass
-
 		
 	elif event is InputEventMouseMotion:
 		if not check_node_collision(event.position)[1].is_empty() or expanding_collision()[1].is_empty():
