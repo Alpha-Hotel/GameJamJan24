@@ -14,8 +14,8 @@ var cursor_x = load("res://Frames/No_node.png")
 func _ready():
 	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
 	$HUD/Counter_number.text = "10"
-	spawn_resource_nodes(25)
-	spawn_danger_nodes(7)
+	spawn_resource_nodes(30)
+	spawn_danger_nodes(30)
 	#get_attributes_of_all()
 
 var rng1 = RandomNumberGenerator.new()
@@ -46,9 +46,10 @@ func _input(event):
 				reduce_score(node.kill_node())
 				chain_death(collisions)
 			if not collisions[2].is_empty():
-				if not collisions[2].is_empty():
-					show_player_hint(collisions)
 				remove_resource_nodes(collisions)
+			var vision_collision = custom_collision(10, event.position)
+			if not vision_collision[2].is_empty():
+					show_player_hint(vision_collision)
 		else:
 			if int($HUD/Counter_number.text) > 0:
 				pass
@@ -85,7 +86,7 @@ func check_node_collision(pos):
 func expanding_collision():	
 	# Grows the collider to the size of particle effect, checks for adjacent nodes
 	# Returns nodes that were collided with
-	$Collider.scale =Vector2(10,10)
+	$Collider.scale =Vector2(4,4)
 	$Collider.force_shapecast_update() 
 	$Collider.scale =Vector2(1,1)
 	return sort_collisions($Collider.collision_result)
@@ -155,18 +156,22 @@ func reduce_score(num:int):
 func remove_resource_nodes(collision_list):
 	for resource_node in collision_list[2]:
 		resource_node["collider"].queue_free()
-		$HUD/Counter_number.text = str(int($HUD/Counter_number.text)+5)
+		$HUD/Counter_number.text = str(int($HUD/Counter_number.text)+2)
+
+func custom_collision(radius, pos):
+	$Collider.position = pos
+	$Collider.scale =Vector2(radius, radius)
+	$Collider.force_shapecast_update() 
+	$Collider.scale =Vector2(1,1)
+	return sort_collisions($Collider.collision_result)
 
 func show_player_hint(collision_list):
 	##check and send particles to danger node
 	
 	if not collision_list[0].is_empty():
 		for danger_node in collision_list[0]:
-			#instantiate kids
-			var danger_node_hint = player_hint_danger_node.instantiate()
-			danger_node_hint.position = danger_node["point"]
-			add_child(danger_node_hint)
-		pass
+			danger_node["collider"].play_particles()
+
 		
 	##check and send particles to resource node
 	if not collision_list[2].is_empty():
