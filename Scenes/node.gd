@@ -36,10 +36,11 @@ func _input(event):
 			select_play_audio()
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
-			node.set_connection_list( add_connections(event.position, collisions[1]))
+			node.set_connection_list( add_connections(event.position, custom_collision(20, event.position )[1]))
 			var score = collisions[1].size() * collisions[2].size()
 			node.set_score(score)
 			$HUD/Score.text = str(int($HUD/Score.text)+score)
+			
 			
 			if not collisions[0].is_empty():
 				if not collisions[0].is_empty():
