@@ -46,7 +46,7 @@ func _input(event):
 				if not collisions[0].is_empty():
 					show_player_hint(collisions)
 				reduce_score(node.kill_node())
-				chain_death(collisions)
+				chain_death(custom_collision(20, event.position ))
 			if not collisions[2].is_empty():
 				remove_resource_nodes(collisions)
 			var vision_collision = custom_collision(10, event.position)
