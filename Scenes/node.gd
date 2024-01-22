@@ -37,7 +37,7 @@ func _input(event):
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
 			node.set_connection_list( add_connections(event.position, custom_collision(20, event.position )[1]))
-			var score = collisions[1].size() * collisions[2].size()
+			var score = node.connection_list.size() * collisions[2].size()
 			node.set_score(score)
 			$HUD/Score.text = str(int($HUD/Score.text)+score)
 			
@@ -57,7 +57,7 @@ func _input(event):
 				pass
 		
 	elif event is InputEventMouseMotion:
-		if not check_node_collision(event.position)[1].is_empty() or expanding_collision()[1].is_empty():
+		if not check_node_collision(event.position)[1].is_empty() or custom_collision(20, event.position)[1].is_empty():
 			Input.set_custom_mouse_cursor(cursor_x, 0, Vector2(7,7))
 		else:
 			Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
@@ -88,7 +88,7 @@ func check_node_collision(pos):
 func expanding_collision():	
 	# Grows the collider to the size of particle effect, checks for adjacent nodes
 	# Returns nodes that were collided with
-	$Collider.scale =Vector2(4,4)
+	$Collider.scale =Vector2(5,5)
 	$Collider.force_shapecast_update() 
 	$Collider.scale =Vector2(1,1)
 	return sort_collisions($Collider.collision_result)
