@@ -17,6 +17,7 @@ animations = [{
 }]
 
 [node name="danger_node" type="Area2D" groups=["danger"]]
+z_index = -1
 script = ExtResource("1_hnm8s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

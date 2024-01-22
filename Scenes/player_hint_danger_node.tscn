@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7pvpep2pjy8s"]
+
+[ext_resource type="Texture2D" uid="uid://c3covbtubte66" path="res://Frames/danger_pixels-modified.png" id="1_x7hys"]
+
+[sub_resource type="Curve" id="Curve_5adky"]
+min_value = -20.0
+max_value = 50.0
+_data = [Vector2(0.121951, -2.30769), 0.0, 0.0, 0, 0, Vector2(0.243902, 5.38462), 0.0, 0.0, 0, 0, Vector2(0.762195, -6.15385), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gfyxg"]
+curve = SubResource("Curve_5adky")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4l0nx"]
+lifetime_randomness = 0.05
+particle_flag_disable_z = true
+angle_max = 285.8
+spread = 180.0
+initial_velocity_min = 22.9
+initial_velocity_max = 91.6
+radial_velocity_curve = SubResource("CurveTexture_gfyxg")
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 47.92
+tangential_accel_max = 52.08
+damping_max = 72.605
+turbulence_enabled = true
+turbulence_noise_strength = 2.17
+
+[sub_resource type="GDScript" id="GDScript_yptaq"]
+script/source = "extends GPUParticles2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.emitting = true
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="player_hint_danger_node" type="GPUParticles2D"]
+z_index = 1
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_4l0nx")
+texture = ExtResource("1_x7hys")
+lifetime = 2.5
+one_shot = true
+explosiveness = 0.65
+randomness = 0.28
+interpolate = false
+collision_base_size = 5.12
+trail_enabled = true
+trail_lifetime = 0.73
+trail_sections = 4
+trail_section_subdivisions = 2
+script = SubResource("GDScript_yptaq")

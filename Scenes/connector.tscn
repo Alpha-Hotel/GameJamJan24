@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://c7b1nw0kseyxd" path="res://Frames/nutrient_channel.png" id="1_w8vrb"]
 
 [node name="connector" type="Line2D"]
-z_index = -1
 texture_repeat = 2
 scale = Vector2(0.3, 0.3)
 points = PackedVector2Array(1636.67, 1130, 916.667, 1116.67)

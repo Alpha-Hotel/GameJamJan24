@@ -28,8 +28,7 @@ func kill_node():
 		return int($Score.text)
 	else:
 		return 0
-	
-	
+
 func set_connection_list(l):
 	connection_list = l
 	
@@ -58,7 +57,7 @@ max_value = 50.0
 _data = [Vector2(0.121951, -2.30769), 0.0, 0.0, 0, 0, Vector2(0.243902, 5.38462), 0.0, 0.0, 0, 0, Vector2(0.762195, -6.15385), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_h6tg0"]
+[sub_resource type="CurveTexture" id="CurveTexture_um6nk"]
 curve = SubResource("Curve_650lg")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ud70"]
@@ -69,7 +68,7 @@ orbit_velocity_min = 0.251
 orbit_velocity_max = 0.791
 radial_velocity_min = 41.67
 radial_velocity_max = 41.67
-radial_velocity_curve = SubResource("CurveTexture_h6tg0")
+radial_velocity_curve = SubResource("CurveTexture_um6nk")
 gravity = Vector3(0, 0, 0)
 tangential_accel_min = 47.92
 tangential_accel_max = 52.08
@@ -77,7 +76,7 @@ damping_max = 72.605
 turbulence_enabled = true
 
 [node name="Mycelia Node" type="Area2D"]
-z_index = -1
+z_index = 1
 script = SubResource("GDScript_fpcbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -92,6 +91,7 @@ scale = Vector2(1.7, 1.691)
 sprite_frames = SubResource("SpriteFrames_m0ial")
 
 [node name="Spores" type="GPUParticles2D" parent="."]
+z_index = 1
 emitting = false
 amount = 85
 process_material = SubResource("ParticleProcessMaterial_4ud70")
@@ -100,6 +100,7 @@ lifetime = 2.5
 one_shot = true
 explosiveness = 0.84
 interpolate = false
+collision_base_size = 1.3
 trail_enabled = true
 
 [node name="Score" type="Label" parent="."]

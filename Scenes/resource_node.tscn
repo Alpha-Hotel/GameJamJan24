@@ -18,6 +18,7 @@ animations = [{
 }]
 
 [node name="Resource Node" type="Area2D" groups=["resource"]]
+z_index = -1
 script = ExtResource("1_tugmp")
 
 [node name="rescource_collider" type="CollisionShape2D" parent="."]

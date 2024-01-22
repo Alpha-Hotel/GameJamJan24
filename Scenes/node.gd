@@ -4,23 +4,22 @@ const mycelia_node = preload("res://Scenes/mycelia_node.tscn")
 const danger_node = preload("res://Scenes/danger_node.tscn")
 const resource_node = preload("res://Scenes/resource_node.tscn")
 const connector = preload("res://Scenes/connector.tscn")
+const player_hint_danger_node = preload("res://Scenes/player_hint_danger_node.tscn")
+const player_hint_resource_node = preload("res://Scenes/player_hint_resource_node.tscn")
+
 # Load the custom images for the mouse cursor.
 var node_image = load("res://Frames/node.png")
 var cursor_x = load("res://Frames/No_node.png")
 
-
 func _ready():
 	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
-	$HUD/Counter_number.text = "50"
+	$HUD/Counter_number.text = "10"
 	spawn_resource_nodes(25)
 	spawn_danger_nodes(7)
 	#get_attributes_of_all()
 
-
-	
 var rng1 = RandomNumberGenerator.new()
 var rng2 = RandomNumberGenerator.new()
-
 
 func _process(delta):
 	#update_node_signal(delta)
@@ -42,9 +41,11 @@ func _input(event):
 			$HUD/Score.text = str(int($HUD/Score.text)+score)
 			
 			if not collisions[0].is_empty():
+				show_player_hint(collisions)
 				reduce_score(node.kill_node())
 				chain_death(collisions)
 			if not collisions[2].is_empty():
+				show_player_hint(collisions)
 				remove_resource_nodes(collisions)
 		else:
 			if int($HUD/Counter_number.text) > 0:
@@ -56,7 +57,6 @@ func _input(event):
 			Input.set_custom_mouse_cursor(cursor_x, 0, Vector2(7,7))
 		else:
 			Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
-
 
 func add_mycelia_node(pos):
 	# This function adds a mycelia node at a given position (pos)
@@ -150,10 +150,28 @@ func chain_death(collision_list):
 func reduce_score(num:int):
 	print("reducing score by ", num)
 	$HUD/Score.text = str(int($HUD/Score.text)-num)
-
-
 		
 func remove_resource_nodes(collision_list):
 	for resource_node in collision_list[2]:
 		resource_node["collider"].queue_free()
-	
+		$HUD/Counter_number.text = str(int($HUD/Counter_number.text)+5)
+
+func show_player_hint(collision_list):
+	##check and send particles to danger node
+	if not collision_list[0].is_empty():
+		for danger_node in collision_list[0]:
+			#instantiate kids
+			var danger_node_hint = player_hint_danger_node.instantiate()
+			danger_node_hint.position = danger_node["point"]
+			add_child(danger_node_hint)
+			
+		pass
+		
+	##check and send particles to resource node
+	if not collision_list[2].is_empty():
+		for resource_node in collision_list[2]:
+			#instantiate kids
+			var resource_node_hint = player_hint_resource_node.instantiate()
+			resource_node_hint.position = resource_node["point"]
+			add_child(resource_node_hint)
+		pass
