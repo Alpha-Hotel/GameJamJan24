@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn8o2yey1228"]
+[gd_scene load_steps=8 format=3 uid="uid://dn8o2yey1228"]
 
 [ext_resource type="Script" path="res://Scenes/node.gd" id="1_t50d0"]
+[ext_resource type="AudioStream" uid="uid://bnfi05dlwtja8" path="res://audio/button_1.wav" id="2_4a42p"]
+[ext_resource type="AudioStream" uid="uid://dtiylukph13m1" path="res://audio/button_2.wav" id="3_1i0fk"]
+[ext_resource type="AudioStream" uid="uid://b1vhb3yvasnj5" path="res://audio/button_3.wav" id="4_d8mta"]
+[ext_resource type="AudioStream" uid="uid://u6wufnwht4ox" path="res://audio/button_4.wav" id="5_ybmip"]
+[ext_resource type="AudioStream" uid="uid://y433gpukjwsd" path="res://audio/button_5.wav" id="6_0cnce"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fptqp"]
 
@@ -66,3 +71,18 @@ offset_top = 1.0
 offset_right = 681.0
 offset_bottom = 24.0
 text = "Score:"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4a42p")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1i0fk")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d8mta")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ybmip")
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0cnce")
