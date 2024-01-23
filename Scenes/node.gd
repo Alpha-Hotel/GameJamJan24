@@ -97,7 +97,7 @@ func add_connections(node, pos_list):
 	# This function adds a connection line with nodes at two given positions (pos1, pos2)
 	var connections_list = []
 	for pos2 in pos_list:
-		if not pos2 ["collider"] == node:
+		if not pos2["collider"] == node and not pos2["collider"].dying:
 			var conn = connector.instantiate()
 			add_child(conn)
 			var conn_transform = conn.get_global_transform_with_canvas().affine_inverse()
@@ -152,7 +152,8 @@ func spawn_danger_nodes(num_spawn_danger):
 
 func chain_death(collision_list):
 	for mycelia in collision_list[1]:
-		reduce_score(mycelia["collider"].kill_node())
+		if not mycelia["collider"].dying:
+			reduce_score(mycelia["collider"].kill_node())
 		
 func reduce_score(num:int):
 	print("reducing score by ", num)

@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7xx3xhrnkike"]
+
+[ext_resource type="LabelSettings" path="res://Fonts/new_label_settings.tres" id="1_m62v1"]
+[ext_resource type="LabelSettings" uid="uid://c6j0pqxqlgshm" path="res://Fonts/Score_label.tres" id="2_h0gfx"]
+[ext_resource type="Texture2D" uid="uid://cbgpg2pb6clr2" path="res://Frames/transparent_mushroom.png" id="3_x5j7r"]
+
+[node name="EndScreen" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Quote" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -357.5
+offset_top = 40.0
+offset_right = 357.5
+offset_bottom = 200.0
+grow_horizontal = 2
+text = "Even in death and decay, there is beauty."
+label_settings = ExtResource("1_m62v1")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -39.0
+offset_right = 193.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your score:               "
+label_settings = ExtResource("2_h0gfx")
+
+[node name="Dead_nodes" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -14.0
+offset_right = 174.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dead colonies:       "
+label_settings = ExtResource("2_h0gfx")
+
+[node name="TransparentMushroom" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1010, 430)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_x5j7r")
+
+[node name="TransparentMushroom2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(190, 407)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_x5j7r")
+
+[node name="colonies_placed" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = 11.0
+offset_right = 181.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Colonies placed:  "
+label_settings = ExtResource("2_h0gfx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 1156.0
+offset_bottom = 649.0
+color = Color(0, 0, 0, 0.823529)
+metadata/_edit_group_ = true
