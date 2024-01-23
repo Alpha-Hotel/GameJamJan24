@@ -6,6 +6,7 @@
 [sub_resource type="GDScript" id="GDScript_fpcbi"]
 script/source = "extends Area2D
 @export var connection_list : Array
+var score : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +18,7 @@ func _process(delta):
 	pass
 
 func kill_node():
-	
+	var minus_score = score
 	var tween = get_tree().create_tween()
 	for conn in connection_list:
 		if is_instance_valid(conn):
@@ -26,18 +27,21 @@ func kill_node():
 	if is_instance_valid(self):
 		tween.tween_property(self, \"modulate\", Color.RED, 1)
 		tween.tween_callback(queue_free).set_delay(1)
-		return int($Score.text)
+		score -= minus_score
+		return minus_score
 	else:
 		return 0
+		
 
 func set_connection_list(l):
 	connection_list = l
 
 func append_connection(i):
 	connection_list.append(i)
-	print(\"worked\")
+	#print(\"worked\")
 	
-func set_score(score:int):
+func set_score(node_score:int):
+	score = node_score
 	$Score.text = str(score)
 "
 
