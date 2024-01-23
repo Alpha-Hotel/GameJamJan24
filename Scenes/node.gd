@@ -104,6 +104,8 @@ func add_connections(pos1, pos_list):
 		conn.set_point_position(1, pos2.point * conn_transform)
 		conn.add_to_group("connectors")
 		connections_list.append(conn)
+		pos2["collider"].append_connection(conn)
+		
 
 	return connections_list
 

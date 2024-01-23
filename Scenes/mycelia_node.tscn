@@ -32,6 +32,10 @@ func kill_node():
 
 func set_connection_list(l):
 	connection_list = l
+
+func append_connection(i):
+	connection_list.append(i)
+	print(\"worked\")
 	
 func set_score(score:int):
 	$Score.text = str(score)

@@ -17,11 +17,6 @@ shape = SubResource("CircleShape2D_fptqp")
 target_position = Vector2(0, 0)
 collide_with_areas = true
 
-[node name="Collider_Particle" type="ShapeCast2D" parent="." groups=["mycelia_nodes"]]
-shape = SubResource("CircleShape2D_fptqp")
-target_position = Vector2(0, 0)
-collide_with_areas = true
-
 [node name="ColorRect" type="ColorRect" parent="."]
 z_as_relative = false
 offset_right = 1152.0
