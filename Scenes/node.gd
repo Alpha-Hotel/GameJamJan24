@@ -47,11 +47,10 @@ func _input(event):
 			node.set_connection_list( add_connections(node, custom_collision(20, event.position )[1]))
 			var score = node.connection_list.size() * collisions[2].size()
 			node.set_score(score)
-			$HUD/Score.text = str(int($HUD/Score.text)+score)
+			increase_score(score)
 			
 			if not collisions[0].is_empty():
-				if not collisions[0].is_empty():
-					show_player_hint(collisions)
+				show_player_hint(collisions)
 				reduce_score(node.kill_node())
 				chain_death(custom_collision(20, event.position ))
 			if not collisions[2].is_empty():
@@ -165,6 +164,10 @@ func chain_death(collision_list):
 func reduce_score(num:int):
 	print("reducing score by ", num)
 	$HUD/Score.text = str(int($HUD/Score.text)-num)
+	
+func increase_score(num:int):
+	print("increase score by ", num)
+	$HUD/Score.text = str(int($HUD/Score.text)+num)
 		
 func remove_resource_nodes(collision_list):
 	for resource_node in collision_list[2]:
