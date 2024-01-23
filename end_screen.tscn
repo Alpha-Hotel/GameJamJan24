@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1x0wgyjyfnhs"]
+[gd_scene load_steps=5 format=3 uid="uid://dew58jfab0epy"]
 
-[ext_resource type="Script" path="res://Scenes/end_screen.gd" id="1_apkwh"]
 [ext_resource type="LabelSettings" uid="uid://d1n0tlccdmsmg" path="res://Fonts/new_label_settings.tres" id="1_cq6fb"]
+[ext_resource type="Script" path="res://Scenes/end_screen.gd" id="1_hn68o"]
 [ext_resource type="LabelSettings" uid="uid://c6j0pqxqlgshm" path="res://Fonts/Score_label.tres" id="2_64mgl"]
 [ext_resource type="Texture2D" uid="uid://cbgpg2pb6clr2" path="res://Frames/transparent_mushroom.png" id="3_2dbay"]
 
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_apkwh")
+script = ExtResource("1_hn68o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

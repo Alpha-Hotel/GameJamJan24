@@ -6,14 +6,15 @@ const resource_node = preload("res://Scenes/resource_node.tscn")
 const connector = preload("res://Scenes/connector.tscn")
 const player_hint_danger_node = preload("res://Scenes/player_hint_danger_node.tscn")
 const player_hint_resource_node = preload("res://Scenes/player_hint_resource_node.tscn")
+const end_screen = preload("res://Scenes/end_screen.tscn")
 
 # Load the custom images for the mouse cursor.
 var node_image = load("res://Frames/node.png")
 var cursor_x = load("res://Frames/No_node.png")
 
 func _ready():
-	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
 	$HUD/Counter_number.text = "10"
+	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
 	spawn_resource_nodes(30)
 	spawn_danger_nodes(30)
 	#get_attributes_of_all()
@@ -22,9 +23,16 @@ var rng1 = RandomNumberGenerator.new()
 var rng2 = RandomNumberGenerator.new()
 
 func _process(delta):
+	
+	if int($HUD/Counter_number.text) == 0:
+		var score = int($HUD/Score.text)
+		$Control.set_score(score)
+		await get_tree().create_timer(1.5).timeout
+		$Control.visible = true
+		$Control/CanvasLayer.visible = true
+		
 	#update_node_signal(delta)
-	pass
-
+	
 func _input(event):
 	
 	if event is InputEventMouseButton and not event.is_action_released("click"):
@@ -40,7 +48,6 @@ func _input(event):
 			var score = node.connection_list.size() * collisions[2].size()
 			node.set_score(score)
 			$HUD/Score.text = str(int($HUD/Score.text)+score)
-			
 			
 			if not collisions[0].is_empty():
 				if not collisions[0].is_empty():
@@ -166,9 +173,9 @@ func remove_resource_nodes(collision_list):
 
 func custom_collision(radius, pos):
 	$Collider.position = pos
-	$Collider.scale =Vector2(radius, radius)
+	$Collider.scale = Vector2(radius, radius)
 	$Collider.force_shapecast_update() 
-	$Collider.scale =Vector2(1,1)
+	$Collider.scale = Vector2(1,1)
 	return sort_collisions($Collider.collision_result)
 
 func select_play_audio():
@@ -190,7 +197,6 @@ func show_player_hint(collision_list):
 	if not collision_list[0].is_empty():
 		for danger_node in collision_list[0]:
 			danger_node["collider"].play_particles()
-
 		
 	##check and send particles to resource node
 	if not collision_list[2].is_empty():
@@ -200,3 +206,8 @@ func show_player_hint(collision_list):
 			resource_node_hint.position = resource_node["point"]
 			add_child(resource_node_hint)
 		pass
+
+func get_nodes():
+	$HUD/Counter_number.text = "10"
+
+	
