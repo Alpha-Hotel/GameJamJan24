@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c6j0pqxqlgshm"]
+
+[ext_resource type="FontFile" uid="uid://dnyewi2e2ubs" path="res://Fonts/RubikBurned-Regular.ttf" id="1_1un5o"]
+
+[resource]
+font = ExtResource("1_1un5o")
+font_size = 30
+font_color = Color(0.439216, 0.815686, 0.396078, 0.607843)
