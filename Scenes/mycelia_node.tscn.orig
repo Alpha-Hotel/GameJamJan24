@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-[gd_scene load_steps=5 format=3 uid="uid://dmqghto7aslfc"]
-
-[ext_resource type="Texture2D" uid="uid://bre38yo8ywa0x" path="res://Frames/node.png" id="1_pwb12"]
-=======
 [gd_scene load_steps=5 format=3 uid="uid://cdfy34177dbav"]
 
 [ext_resource type="Texture2D" uid="uid://dh3kfq464bhis" path="res://Frames/Node.png" id="1_7poir"]
->>>>>>> 67c6c1484ab46911049869250b5b55dcc0696a73
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l0swx"]
 
@@ -16,11 +10,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-<<<<<<< HEAD
-"texture": ExtResource("1_pwb12")
-=======
 "texture": ExtResource("1_7poir")
->>>>>>> 67c6c1484ab46911049869250b5b55dcc0696a73
 }],
 "loop": true,
 "name": &"default",
@@ -28,10 +18,7 @@ animations = [{
 }]
 
 [node name="Mycelia Node" type="Area2D"]
-<<<<<<< HEAD
-=======
 metadata/_edit_group_ = true
->>>>>>> 67c6c1484ab46911049869250b5b55dcc0696a73
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 material = SubResource("ShaderMaterial_l0swx")
@@ -39,11 +26,6 @@ shape = SubResource("CircleShape2D_y5fyk")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-<<<<<<< HEAD
-position = Vector2(2, -1)
-scale = Vector2(0.431373, 0.428571)
-=======
 position = Vector2(1, 1)
 scale = Vector2(1.7, 1.691)
->>>>>>> 67c6c1484ab46911049869250b5b55dcc0696a73
 sprite_frames = SubResource("SpriteFrames_m0ial")

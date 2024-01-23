@@ -6,11 +6,8 @@
 [sub_resource type="GDScript" id="GDScript_fpcbi"]
 script/source = "extends Area2D
 @export var connection_list : Array
-<<<<<<< HEAD
 var score : int = 0
-=======
 @export var dying : bool
->>>>>>> 00252b125b06b0dfcd47c3a4c5bfafcd4aef7769
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,11 +20,8 @@ func _process(delta):
 	pass
 
 func kill_node():
-<<<<<<< HEAD
 	var minus_score = score
-=======
 	dying = true
->>>>>>> 00252b125b06b0dfcd47c3a4c5bfafcd4aef7769
 	var tween = get_tree().create_tween()
 	for conn in connection_list:
 		if is_instance_valid(conn):
@@ -47,11 +41,7 @@ func set_connection_list(l):
 
 func append_connection(i):
 	connection_list.append(i)
-<<<<<<< HEAD
-	#print(\"worked\")
-=======
 	
->>>>>>> 00252b125b06b0dfcd47c3a4c5bfafcd4aef7769
 	
 func set_score(node_score:int):
 	score = node_score
