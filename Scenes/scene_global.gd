@@ -13,5 +13,5 @@ func get_child_node_coords():
 	return child_node.get_location()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass

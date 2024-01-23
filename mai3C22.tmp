@@ -129,21 +129,6 @@ grow_vertical = 2
 text = "Your score:               "
 label_settings = ExtResource("9_wpbel")
 
-[node name="Dead_nodes" type="Label" parent="Control/CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -153.0
-offset_top = -14.0
-offset_right = 174.0
-offset_bottom = 98.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Dead colonies:       "
-label_settings = ExtResource("9_wpbel")
-
 [node name="TransparentMushroom" type="Sprite2D" parent="Control/CanvasLayer"]
 position = Vector2(1010, 430)
 scale = Vector2(0.3, 0.3)
@@ -154,22 +139,8 @@ position = Vector2(190, 407)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("10_bvc0f")
 
-[node name="colonies_placed" type="Label" parent="Control/CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -153.0
-offset_top = 11.0
-offset_right = 181.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Colonies placed:  "
-label_settings = ExtResource("9_wpbel")
-
 [node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
 offset_left = 2.0
 offset_top = -2.0
 offset_right = 1156.0
@@ -180,6 +151,7 @@ metadata/_edit_group_ = true
 [node name="ColorRect2" type="ColorRect" parent="Control"]
 z_index = 9
 z_as_relative = false
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)

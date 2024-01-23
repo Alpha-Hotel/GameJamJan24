@@ -16,12 +16,11 @@ func _ready():
 	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
 	spawn_resource_nodes(30)
 	spawn_danger_nodes(30)
-	#get_attributes_of_all()
-
+	
 var rng1 = RandomNumberGenerator.new()
 var rng2 = RandomNumberGenerator.new()
 
-func _process(delta):
+func _process(_delta):
 	
 	if int($HUD/Counter_number.text) == 0:
 		var score = int($HUD/Score.text)
@@ -83,6 +82,7 @@ func add_danger_node(pos_danger):
 	node_danger.add_to_group("mycelia_nodes")
 
 func check_node_collision(pos):
+	
 	#This function uses the Collider node to detect collisions at a given position pos
 	$Collider.position = pos
 	# Normally collider updates at the physics update step. This forces it to update
@@ -168,8 +168,8 @@ func increase_score(num:int):
 	$HUD/Score.text = str(int($HUD/Score.text)+num)
 		
 func remove_resource_nodes(collision_list):
-	for resource_node in collision_list[2]:
-		resource_node["collider"].queue_free()
+	for resource_node_x in collision_list[2]:
+		resource_node_x["collider"].queue_free()
 		$HUD/Counter_number.text = str(int($HUD/Counter_number.text)+2)
 
 func custom_collision(radius, pos):
@@ -196,26 +196,33 @@ func show_player_hint(collision_list):
 	##check and send particles to danger node
 	
 	if not collision_list[0].is_empty():
-		for danger_node in collision_list[0]:
-			danger_node["collider"].play_particles()
+		for danger_node_x in collision_list[0]:
+			danger_node_x["collider"].play_particles()
 		
 	##check and send particles to resource node
 	if not collision_list[2].is_empty():
-		for resource_node in collision_list[2]:
+		for resource_node_x in collision_list[2]:
 			#instantiate kids
 			var resource_node_hint = player_hint_resource_node.instantiate()
-			resource_node_hint.position = resource_node["point"]
+			resource_node_hint.position = resource_node_x["point"]
 			add_child(resource_node_hint)
 		pass
 	
 func reset_scene():
 	
-	get_tree().call_group("mycelia_nodes", "queue_free")
-	get_tree().call_group("danger", "queue_free")
-	get_tree().call_group("collider", "queue_free")
+	for mycelia in get_tree().get_nodes_in_group("mycelia_nodes"):
+		mycelia.queue_free()
+	for danger in get_tree().get_nodes_in_group("danger"):
+		danger.queue_free()
+	for connector_x in get_tree().get_nodes_in_group("connector"):
+		connector_x.queue_free()
+	
 	spawn_resource_nodes(30)
 	spawn_danger_nodes(30)
 	$HUD/Counter_number.text = "10"
 
 func _on_control_reset():
 	reset_scene() # Replace with function body.
+
+
+
