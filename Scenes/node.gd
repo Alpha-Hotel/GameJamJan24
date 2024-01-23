@@ -7,7 +7,6 @@ const connector = preload("res://Scenes/connector.tscn")
 const player_hint_danger_node = preload("res://Scenes/player_hint_danger_node.tscn")
 const player_hint_resource_node = preload("res://Scenes/player_hint_resource_node.tscn")
 const end_screen = preload("res://Scenes/end_screen.tscn")
-
 # Load the custom images for the mouse cursor.
 var node_image = load("res://Frames/node.png")
 var cursor_x = load("res://Frames/No_node.png")
@@ -113,7 +112,6 @@ func add_connections(node, pos_list):
 			connections_list.append(conn)
 			pos2["collider"].append_connection(conn)
 		
-
 	return connections_list
 
 func sort_collisions(list):
@@ -209,8 +207,15 @@ func show_player_hint(collision_list):
 			resource_node_hint.position = resource_node["point"]
 			add_child(resource_node_hint)
 		pass
-
-func get_nodes():
+	
+func reset_scene():
+	
+	get_tree().call_group("mycelia_nodes", "queue_free")
+	get_tree().call_group("danger", "queue_free")
+	get_tree().call_group("collider", "queue_free")
+	spawn_resource_nodes(30)
+	spawn_danger_nodes(30)
 	$HUD/Counter_number.text = "10"
 
-	
+func _on_control_reset():
+	reset_scene() # Replace with function body.

@@ -1,4 +1,5 @@
 extends Control
+signal reset
 
 @onready var again_button = $again_button as Button
 @onready var quit_button = $quit_button as Button
@@ -14,9 +15,11 @@ func _process(delta):
 	pass
 
 func on_again_pressed() -> void:
+	reset.emit()
+	await get_tree().create_timer(1.5).timeout
 	self.visible = false
-	get_tree().change_scene_to_file("res://main.tscn")
-
+	
+	
 func on_exit_pressed() -> void:
 	get_tree().quit()
 	
