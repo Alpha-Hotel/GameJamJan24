@@ -36,7 +36,7 @@ func _input(event):
 			select_play_audio()
 			$HUD/Counter_number.text = str(int($HUD/Counter_number.text)-1)
 			var collisions = expanding_collision() #do something with this
-			node.set_connection_list( add_connections(event.position, custom_collision(20, event.position )[1]))
+			node.set_connection_list( add_connections(node, custom_collision(20, event.position )[1]))
 			var score = node.connection_list.size() * collisions[2].size()
 			node.set_score(score)
 			$HUD/Score.text = str(int($HUD/Score.text)+score)
@@ -65,8 +65,8 @@ func _input(event):
 func add_mycelia_node(pos):
 	# This function adds a mycelia node at a given position (pos)
 	var node = mycelia_node.instantiate()
-	add_child(node)
 	node.position = pos
+	add_child(node)
 	node.add_to_group("mycelia_nodes")
 	return node
 
@@ -93,18 +93,19 @@ func expanding_collision():
 	$Collider.scale =Vector2(1,1)
 	return sort_collisions($Collider.collision_result)
 
-func add_connections(pos1, pos_list):
+func add_connections(node, pos_list):
 	# This function adds a connection line with nodes at two given positions (pos1, pos2)
 	var connections_list = []
 	for pos2 in pos_list:
-		var conn = connector.instantiate()
-		add_child(conn)
-		var conn_transform = conn.get_global_transform_with_canvas().affine_inverse()
-		conn.set_point_position(0, pos1 * conn_transform)
-		conn.set_point_position(1, pos2.point * conn_transform)
-		conn.add_to_group("connectors")
-		connections_list.append(conn)
-		pos2["collider"].append_connection(conn)
+		if not pos2 ["collider"] == node:
+			var conn = connector.instantiate()
+			add_child(conn)
+			var conn_transform = conn.get_global_transform_with_canvas().affine_inverse()
+			conn.set_point_position(0, node.position * conn_transform)
+			conn.set_point_position(1, pos2.point * conn_transform)
+			conn.add_to_group("connectors")
+			connections_list.append(conn)
+			pos2["collider"].append_connection(conn)
 		
 
 	return connections_list
@@ -126,8 +127,8 @@ func sort_collisions(list):
 
 func get_attributes_of_all():
 	
-	for i in get_tree().get_nodes_in_group("resource"):
-		print (get_tree().get_nodes_in_group("resource"))
+	for i in get_tree().get_nodes_in_group("mycelia_nodes"):
+		print (i)
 	
 func spawn_resource_nodes(num_spawn):
 	for i in num_spawn:
