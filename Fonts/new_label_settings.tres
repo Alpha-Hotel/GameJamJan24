@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d1n0tlccdmsmg"]
+
+[ext_resource type="FontFile" uid="uid://7ys4ojqsadg5" path="res://Fonts/RubikMaps-Regular.ttf" id="1_ldvhr"]
+
+[resource]
+font = ExtResource("1_ldvhr")
+font_size = 49
+font_color = Color(0.439216, 0.815686, 0.396078, 0.54902)
