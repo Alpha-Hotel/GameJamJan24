@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/node.gd" id="1_ify4s"]
 [ext_resource type="AudioStream" uid="uid://bnfi05dlwtja8" path="res://audio/button_1.wav" id="2_0i82t"]
+[ext_resource type="PackedScene" uid="uid://cdsqf3uvklq3e" path="res://Scenes/collider.tscn" id="2_oweyy"]
 [ext_resource type="AudioStream" uid="uid://dtiylukph13m1" path="res://audio/button_2.wav" id="3_7cibk"]
 [ext_resource type="AudioStream" uid="uid://b1vhb3yvasnj5" path="res://audio/button_3.wav" id="4_shplh"]
 [ext_resource type="AudioStream" uid="uid://u6wufnwht4ox" path="res://audio/button_4.wav" id="5_6qd8y"]
@@ -11,15 +12,10 @@
 [ext_resource type="LabelSettings" uid="uid://c6j0pqxqlgshm" path="res://Fonts/Score_label.tres" id="9_0qgss"]
 [ext_resource type="Texture2D" uid="uid://cbgpg2pb6clr2" path="res://Frames/transparent_mushroom.png" id="10_0jt28"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fptqp"]
-
 [node name="main" type="Node2D"]
 script = ExtResource("1_ify4s")
 
-[node name="Collider" type="ShapeCast2D" parent="." groups=["mycelia_nodes"]]
-shape = SubResource("CircleShape2D_fptqp")
-target_position = Vector2(0, 0)
-collide_with_areas = true
+[node name="Collider" parent="." instance=ExtResource("2_oweyy")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_as_relative = false

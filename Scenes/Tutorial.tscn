@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dffkasrp4l4vu"]
+
+[ext_resource type="Script" path="res://Scenes/Tutorial.gd" id="1_r4ca3"]
+[ext_resource type="PackedScene" uid="uid://dmqghto7aslfc" path="res://Scenes/mycelia_node.tscn" id="2_e06wm"]
+[ext_resource type="PackedScene" uid="uid://c7pdd8t2ce2cg" path="res://Scenes/connector.tscn" id="3_y1bhl"]
+[ext_resource type="PackedScene" uid="uid://d3mtgnkn0hbeh" path="res://Scenes/resource_node.tscn" id="4_wlp62"]
+[ext_resource type="PackedScene" uid="uid://c7pvpep2pjy8s" path="res://Scenes/player_hint_danger_node.tscn" id="5_v3yf1"]
+[ext_resource type="PackedScene" uid="uid://465f8sou55il" path="res://Scenes/player_hint_resource_node.tscn" id="6_nxh34"]
+[ext_resource type="PackedScene" uid="uid://cdsqf3uvklq3e" path="res://Scenes/collider.tscn" id="7_q081b"]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_r4ca3")
+
+[node name="Mycelia Node" parent="." groups=["mycelia_nodes"] instance=ExtResource("2_e06wm")]
+position = Vector2(155, 136)
+
+[node name="Mycelia Node2" parent="." groups=["mycelia_nodes"] instance=ExtResource("2_e06wm")]
+position = Vector2(269, 136)
+
+[node name="connector" parent="." instance=ExtResource("3_y1bhl")]
+position = Vector2(178, 191)
+points = PackedVector2Array(303.333, -183.333, -76.6667, -183.333)
+
+[node name="Resource Node" parent="." instance=ExtResource("4_wlp62")]
+position = Vector2(199, 303)
+
+[node name="player_hint_danger_node" parent="." instance=ExtResource("5_v3yf1")]
+position = Vector2(199, 434)
+one_shot = false
+
+[node name="player_hint_danger_node2" parent="." instance=ExtResource("6_nxh34")]
+position = Vector2(194, 543)
+one_shot = false
+
+[node name="Collider" parent="." instance=ExtResource("7_q081b")]

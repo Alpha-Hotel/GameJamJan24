@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdsqf3uvklq3e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fptqp"]
+
+[node name="Collider" type="ShapeCast2D" groups=["mycelia_nodes"]]
+shape = SubResource("CircleShape2D_fptqp")
+target_position = Vector2(0, 0)
+collide_with_areas = true
