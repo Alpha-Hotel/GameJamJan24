@@ -1,0 +1,173 @@
+[gd_scene load_steps=12 format=3 uid="uid://dn8o2yey1228"]
+
+[ext_resource type="Script" path="res://Scenes/node.gd" id="1_ify4s"]
+[ext_resource type="AudioStream" uid="uid://bnfi05dlwtja8" path="res://audio/button_1.wav" id="2_0i82t"]
+[ext_resource type="AudioStream" uid="uid://dtiylukph13m1" path="res://audio/button_2.wav" id="3_7cibk"]
+[ext_resource type="AudioStream" uid="uid://b1vhb3yvasnj5" path="res://audio/button_3.wav" id="4_shplh"]
+[ext_resource type="AudioStream" uid="uid://u6wufnwht4ox" path="res://audio/button_4.wav" id="5_6qd8y"]
+[ext_resource type="AudioStream" uid="uid://y433gpukjwsd" path="res://audio/button_5.wav" id="6_l68a5"]
+[ext_resource type="Script" path="res://Scenes/end_screen.gd" id="7_vnu2j"]
+[ext_resource type="LabelSettings" uid="uid://d1n0tlccdmsmg" path="res://Fonts/new_label_settings.tres" id="8_p1j3v"]
+[ext_resource type="LabelSettings" uid="uid://c6j0pqxqlgshm" path="res://Fonts/Score_label.tres" id="9_0qgss"]
+[ext_resource type="Texture2D" uid="uid://cbgpg2pb6clr2" path="res://Frames/transparent_mushroom.png" id="10_0jt28"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fptqp"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_ify4s")
+
+[node name="Collider" type="ShapeCast2D" parent="." groups=["mycelia_nodes"]]
+shape = SubResource("CircleShape2D_fptqp")
+target_position = Vector2(0, 0)
+collide_with_areas = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_as_relative = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Counter_UI" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_right = -8.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Nodes Left:"
+horizontal_alignment = 1
+
+[node name="Counter_number" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 36.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "0"
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 108.0
+offset_top = 2.0
+offset_right = 148.0
+offset_bottom = 25.0
+grow_horizontal = 2
+text = "0
+"
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_left = 633.0
+offset_top = 1.0
+offset_right = 681.0
+offset_bottom = 24.0
+text = "Score:"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0i82t")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7cibk")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_shplh")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6qd8y")
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_l68a5")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_vnu2j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+layer = 10
+visible = false
+
+[node name="Quote" type="Label" parent="Control/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -339.0
+offset_top = 40.0
+offset_right = 376.0
+offset_bottom = 200.0
+grow_horizontal = 2
+text = "Even in death and decay, there is beauty."
+label_settings = ExtResource("8_p1j3v")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Score" type="Label" parent="Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -39.0
+offset_right = 193.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your score:               "
+label_settings = ExtResource("9_0qgss")
+
+[node name="TransparentMushroom" type="Sprite2D" parent="Control/CanvasLayer"]
+position = Vector2(1010, 430)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_0jt28")
+
+[node name="TransparentMushroom2" type="Sprite2D" parent="Control/CanvasLayer"]
+position = Vector2(190, 407)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_0jt28")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 1156.0
+offset_bottom = 649.0
+color = Color(0, 0, 0, 0.823529)
+metadata/_edit_group_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+z_index = 9
+z_as_relative = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="again_button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 417.0
+offset_right = 621.0
+offset_bottom = 456.0
+text = "Play again!"
+
+[node name="quit_button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 473.0
+offset_right = 621.0
+offset_bottom = 512.0
+text = "Quit"
