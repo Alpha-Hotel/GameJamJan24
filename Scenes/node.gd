@@ -129,11 +129,7 @@ func sort_collisions(list):
 			new_list[2].append(i)
 	return new_list
 
-func get_attributes_of_all():
-	
-	for i in get_tree().get_nodes_in_group("mycelia_nodes"):
-		print (i)
-	
+
 func spawn_resource_nodes(num_spawn):
 	for i in num_spawn:
 		var randx = rng1.randf_range(0.0, 1152.0)
@@ -160,11 +156,10 @@ func chain_death(collision_list):
 			reduce_score(mycelia["collider"].kill_node())
 		
 func reduce_score(num:int):
-	print("reducing score by ", num)
+
 	$HUD/Score.text = str(int($HUD/Score.text)-num)
 	
 func increase_score(num:int):
-	print("increase score by ", num)
 	$HUD/Score.text = str(int($HUD/Score.text)+num)
 		
 func remove_resource_nodes(collision_list):

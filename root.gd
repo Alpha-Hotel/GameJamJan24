@@ -13,28 +13,28 @@ func _process(delta):
 	pass
 
 func add_menu():
+	#Adds main menu to the scene tree, connects kill signal
 	var menu_ = menu.instantiate()
 	add_child(menu_)
 	menu_.add_to_group("menu")
 	menu_.kill_me.connect(kill_menu)
 
 func add_main():
-	# This function adds a mycelia node at a given position (pos)
+	# Adds the main scene to the tree and connects the reset signal
 	var main_ = main.instantiate()
 	main_.add_to_group("main")
 	add_child(main_)
 	main_.get_node("Control").reset.connect(_on_restart)
-	print(get_tree().get_signal_connection_list("reset"))
 	return main_
 
 func kill_menu():
+	# frees the menu to ensure no weird scene hierarchy happens
 	for i in get_tree().get_nodes_in_group("menu"):
 		i.queue_free()
 	add_main()
-	print("kill menu")
 
 func _on_restart():
-	print("here")
+	# frees all loaded "main scenes" and replaces itself with a new main scene
 	for i in get_tree().get_nodes_in_group("main"):
 		i.queue_free()
 	

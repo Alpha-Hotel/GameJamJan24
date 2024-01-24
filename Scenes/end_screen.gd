@@ -15,7 +15,6 @@ func _process(_delta):
 
 func on_again_pressed() -> void:
 	reset.emit()
-	print("reset signal sent!")
 	await get_tree().create_timer(1.5).timeout
 	self.visible = false
 	
