@@ -1,9 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmux70l42qlxg"]
+[gd_scene load_steps=9 format=3 uid="uid://dmux70l42qlxg"]
 
 [ext_resource type="Script" path="res://Scenes/danger_node.gd" id="1_hnm8s"]
+[ext_resource type="Texture2D" uid="uid://dyt3uwbv8mvmn" path="res://Frames/Death/MushroomDeath0.png" id="3_ig3u1"]
 [ext_resource type="PackedScene" uid="uid://c7pvpep2pjy8s" path="res://Scenes/player_hint_danger_node.tscn" id="3_mujll"]
+[ext_resource type="Texture2D" uid="uid://bnkbpebr8d12w" path="res://Frames/Death/MushroomDeath1.png" id="4_paapw"]
+[ext_resource type="Texture2D" uid="uid://c3oylh04s5qlr" path="res://Frames/Death/MushroomDeath2.png" id="5_l1svf"]
+[ext_resource type="Texture2D" uid="uid://bv0r5ccm3pyo8" path="res://Frames/Death/MushroomDeath3.png" id="6_wad3l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vumo6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_olqx8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ig3u1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_paapw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l1svf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wad3l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [node name="danger_node" type="Area2D" groups=["danger"]]
 z_index = -1
@@ -14,3 +38,10 @@ scale = Vector2(0.734852, 0.732164)
 shape = SubResource("CircleShape2D_vumo6")
 
 [node name="player_hint_danger_node" parent="." instance=ExtResource("3_mujll")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -44)
+scale = Vector2(0.04, 0.04)
+sprite_frames = SubResource("SpriteFrames_olqx8")
+frame = 3
+frame_progress = 0.726923

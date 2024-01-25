@@ -1,12 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmqghto7aslfc"]
 
-[ext_resource type="Texture2D" uid="uid://dh3kfq464bhis" path="res://Frames/node.png" id="1_7poir"]
+[ext_resource type="Texture2D" uid="uid://bk47m28o3st2j" path="res://Frames/node.png" id="1_7poir"]
 [ext_resource type="Texture2D" uid="uid://cmfvit3r28wvv" path="res://Frames/Particle.png" id="2_q2fg8"]
 
 [sub_resource type="GDScript" id="GDScript_fpcbi"]
 script/source = "extends Area2D
 @export var connection_list : Array
 @export var dying : bool
+var connected_mushrooms = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +26,10 @@ func kill_node():
 		if is_instance_valid(conn):
 			tween.tween_property(conn, \"modulate\", Color.RED, 1)
 			tween.tween_callback(conn.queue_free)
+	for conn in connected_mushrooms:
+		if is_instance_valid(conn):
+			tween.tween_property(conn, \"modulate\", Color.RED, 1)
+			tween.tween_callback(conn.queue_free)
 	if is_instance_valid(self):
 		tween.tween_property(self, \"modulate\", Color.RED, 1)
 		tween.tween_callback(queue_free).set_delay(1)
@@ -38,7 +43,11 @@ func set_connection_list(l):
 func append_connection(i):
 	connection_list.append(i)
 	
-	
+func set_mushroom_list(l):
+	connected_mushrooms = l
+
+
+
 func set_score(score:int):
 	$Score.text = str(score)
 "
@@ -54,7 +63,7 @@ animations = [{
 "texture": ExtResource("1_7poir")
 }],
 "loop": true,
-"name": &"default",
+"name": &"new_animation",
 "speed": 5.0
 }]
 
@@ -93,9 +102,9 @@ one_way_collision_margin = 1.2
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 1)
-scale = Vector2(1.7, 1.691)
+position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_m0ial")
+animation = &"new_animation"
 
 [node name="Spores" type="GPUParticles2D" parent="."]
 z_index = 1

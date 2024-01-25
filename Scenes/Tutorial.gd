@@ -73,7 +73,7 @@ func place_custom(pos):
 				reduce_score(node.kill_node())
 				chain_death(custom_collision(20, pos ))
 			if not collisions[2].is_empty():
-				remove_resource_nodes(collisions)
+				remove_resource_nodes(collisions, node)
 			var vision_collision = custom_collision(10, pos)
 			if not vision_collision[2].is_empty():
 					show_player_hint(vision_collision)
@@ -92,13 +92,15 @@ func _input(event):
 			var score = node.connection_list.size() * collisions[2].size()
 			node.set_score(score)
 			increase_score(score)
-			
+			if not collisions[2].is_empty():
+				remove_resource_nodes(collisions, node)
 			if not collisions[0].is_empty():
 				show_player_hint(collisions)
 				reduce_score(node.kill_node())
+				for i in collisions[0]:
+					i['collider'].show_danger()
 				chain_death(custom_collision(20, event.position ))
-			if not collisions[2].is_empty():
-				remove_resource_nodes(collisions)
+			
 			var vision_collision = custom_collision(10, event.position)
 			if not vision_collision[2].is_empty():
 					show_player_hint(vision_collision)
@@ -153,7 +155,7 @@ func add_connections(node, pos_list):
 			add_child(conn)
 			var conn_transform = conn.get_global_transform_with_canvas().affine_inverse()
 			conn.set_point_position(0, node.position * conn_transform)
-			conn.set_point_position(1, pos2.point * conn_transform)
+			conn.set_point_position(1, pos2["collider"].position * conn_transform)
 			conn.add_to_group("connectors")
 			connections_list.append(conn)
 			pos2["collider"].append_connection(conn)
@@ -208,10 +210,13 @@ func reduce_score(num:int):
 func increase_score(num:int):
 	$HUD/Score.text = str(int($HUD/Score.text)+num)
 		
-func remove_resource_nodes(collision_list):
+func remove_resource_nodes(collision_list, node):
+	var l = []
 	for resource_node_x in collision_list[2]:
-		resource_node_x["collider"].queue_free()
-		#$HUD/Counter_number.text = str(int($HUD/Counter_number.text)+2)
+		resource_node_x["collider"].absorb_resource()
+		l.append(resource_node_x["collider"])
+	node.set_mushroom_list(l)
+
 
 func custom_collision(radius, pos):
 	$Collider.position = pos

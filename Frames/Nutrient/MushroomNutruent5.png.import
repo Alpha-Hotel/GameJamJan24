@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk47m28o3st2j"
-path="res://.godot/imported/node.png-01d606af15a072419c88d322e67367e7.ctex"
+uid="uid://c8sopcb8ybna6"
+path="res://.godot/imported/MushroomNutruent5.png-855a8d34024982be33838917e10ea8be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Frames/node.png"
-dest_files=["res://.godot/imported/node.png-01d606af15a072419c88d322e67367e7.ctex"]
+source_file="res://Frames/Nutrient/MushroomNutruent5.png"
+dest_files=["res://.godot/imported/MushroomNutruent5.png-855a8d34024982be33838917e10ea8be.ctex"]
 
 [params]
 

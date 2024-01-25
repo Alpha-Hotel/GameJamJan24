@@ -1,29 +1,81 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3mtgnkn0hbeh"]
+[gd_scene load_steps=17 format=3 uid="uid://d3mtgnkn0hbeh"]
 
 [ext_resource type="Script" path="res://Scenes/resource_node.gd" id="1_tugmp"]
-[ext_resource type="Texture2D" uid="uid://bh1040vghgdsb" path="res://Frames/resource_node-removebg-preview.png" id="1_xb7v0"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1ixwa"]
-radius = 19.0
+[ext_resource type="Texture2D" uid="uid://cnnl2qt8vfigw" path="res://Frames/Nutrient/MushroomNutruent2.png" id="2_g7m72"]
+[ext_resource type="Texture2D" uid="uid://xgm71eklhobn" path="res://Frames/Nutrient/MushroomNutruent3.png" id="3_ktm2y"]
+[ext_resource type="Texture2D" path="res://Frames/Nutrient/MushroomNutruent4.png" id="4_ga7ml"]
+[ext_resource type="Texture2D" uid="uid://c8sopcb8ybna6" path="res://Frames/Nutrient/MushroomNutruent5.png" id="5_p1v0q"]
+[ext_resource type="Texture2D" uid="uid://3oek0luc0ix2" path="res://Frames/Nutrient/MushroomNutruent1.png" id="6_oejrf"]
+[ext_resource type="Texture2D" uid="uid://d1u6r24yeta0e" path="res://Frames/Nutrient/MushroomNutruent6.png" id="7_tqmrm"]
+[ext_resource type="Texture2D" uid="uid://bbpup7efg5vj7" path="res://Frames/Nutrient/MushroomNutruent7-12.png" id="8_3iqjy"]
+[ext_resource type="Texture2D" uid="uid://xwutxoe3cbgm" path="res://Frames/Nutrient/MushroomNutruent7.png" id="9_33j2n"]
+[ext_resource type="Texture2D" uid="uid://pl2wmswanekm" path="res://Frames/Nutrient/MushroomNutruent13.png" id="10_pkght"]
+[ext_resource type="Texture2D" uid="uid://dj55hke35pn5b" path="res://Frames/Nutrient/MushroomNutruent14.png" id="11_p5jgt"]
+[ext_resource type="Texture2D" uid="uid://ejhx1v5kb0fd" path="res://Frames/Nutrient/MushroomNutruent15.png" id="12_elf3e"]
+[ext_resource type="Texture2D" uid="uid://b6quwhbbuuiq1" path="res://Frames/Nutrient/MushroomNutruent16.png" id="13_imwtv"]
+[ext_resource type="Texture2D" uid="uid://bmwkgrnki5l5c" path="res://Frames/Nutrient/MushroomNutruent17.png" id="14_3eann"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7xq2f"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_xb7v0")
+"texture": ExtResource("6_oejrf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g7m72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ktm2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ga7ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_p1v0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tqmrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3iqjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_33j2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pkght")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_p5jgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_elf3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_imwtv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_3eann")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 3.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ixwa"]
+radius = 19.0
 
 [node name="Resource Node" type="Area2D" groups=["resource"]]
 z_index = -1
 script = ExtResource("1_tugmp")
 
-[node name="rescource_collider" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1ixwa")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.6, 1.52)
+position = Vector2(5, -6)
+scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_7xq2f")
+frame_progress = 0.523779
+offset = Vector2(50, -950)
+
+[node name="rescource_collider" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_1ixwa")
