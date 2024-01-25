@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://dn8o2yey1228"]
 
 [ext_resource type="Script" path="res://Scenes/node.gd" id="1_ify4s"]
-[ext_resource type="AudioStream" uid="uid://bnfi05dlwtja8" path="res://audio/button_1.wav" id="2_0i82t"]
 [ext_resource type="PackedScene" uid="uid://cdsqf3uvklq3e" path="res://Scenes/collider.tscn" id="2_oweyy"]
-[ext_resource type="AudioStream" uid="uid://dtiylukph13m1" path="res://audio/button_2.wav" id="3_7cibk"]
-[ext_resource type="AudioStream" uid="uid://b1vhb3yvasnj5" path="res://audio/button_3.wav" id="4_shplh"]
-[ext_resource type="AudioStream" uid="uid://u6wufnwht4ox" path="res://audio/button_4.wav" id="5_6qd8y"]
-[ext_resource type="AudioStream" uid="uid://y433gpukjwsd" path="res://audio/button_5.wav" id="6_l68a5"]
+[ext_resource type="PackedScene" uid="uid://cugsva4pjrbag" path="res://Scenes/audio_stream_player.tscn" id="3_ch3vu"]
+[ext_resource type="PackedScene" uid="uid://c2jbkbyt0djhu" path="res://Scenes/audio_stream_player_2.tscn" id="4_tcygb"]
+[ext_resource type="PackedScene" uid="uid://euixva8fu1s1" path="res://Scenes/audio_stream_player_3.tscn" id="5_p1cnq"]
+[ext_resource type="PackedScene" uid="uid://lu6bvncjw1f7" path="res://Scenes/audio_stream_player_4.tscn" id="6_phwrs"]
+[ext_resource type="PackedScene" uid="uid://bm57yxysgkl8v" path="res://Scenes/audio_stream_player_5.tscn" id="7_8xsr0"]
 [ext_resource type="Script" path="res://Scenes/end_screen.gd" id="7_vnu2j"]
 [ext_resource type="LabelSettings" uid="uid://d1n0tlccdmsmg" path="res://Fonts/new_label_settings.tres" id="8_p1j3v"]
 [ext_resource type="LabelSettings" uid="uid://c6j0pqxqlgshm" path="res://Fonts/Score_label.tres" id="9_0qgss"]
@@ -66,20 +66,15 @@ offset_right = 681.0
 offset_bottom = 24.0
 text = "Score:"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_0i82t")
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_ch3vu")]
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_7cibk")
+[node name="AudioStreamPlayer2" parent="." instance=ExtResource("4_tcygb")]
 
-[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_shplh")
+[node name="AudioStreamPlayer3" parent="." instance=ExtResource("5_p1cnq")]
 
-[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_6qd8y")
+[node name="AudioStreamPlayer4" parent="." instance=ExtResource("6_phwrs")]
 
-[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_l68a5")
+[node name="AudioStreamPlayer5" parent="." instance=ExtResource("7_8xsr0")]
 
 [node name="Control" type="Control" parent="."]
 visible = false

@@ -1,21 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmux70l42qlxg"]
+[gd_scene load_steps=4 format=3 uid="uid://dmux70l42qlxg"]
 
 [ext_resource type="Script" path="res://Scenes/danger_node.gd" id="1_hnm8s"]
-[ext_resource type="Texture2D" uid="uid://dk4c1lx53m1ys" path="res://Frames/danger_node-modified.png" id="2_leohy"]
 [ext_resource type="PackedScene" uid="uid://c7pvpep2pjy8s" path="res://Scenes/player_hint_danger_node.tscn" id="3_mujll"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vumo6"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vos8k"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_leohy")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="danger_node" type="Area2D" groups=["danger"]]
 z_index = -1
@@ -24,9 +12,5 @@ script = ExtResource("1_hnm8s")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.734852, 0.732164)
 shape = SubResource("CircleShape2D_vumo6")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 1)
-sprite_frames = SubResource("SpriteFrames_vos8k")
 
 [node name="player_hint_danger_node" parent="." instance=ExtResource("3_mujll")]

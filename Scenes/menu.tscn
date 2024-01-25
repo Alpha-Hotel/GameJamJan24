@@ -79,15 +79,19 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 28.8967
-offset_top = -96.5434
-offset_right = 306.897
-offset_bottom = 8.4566
+offset_left = 29.0
+offset_top = -173.0
+offset_right = 307.0
+offset_bottom = 9.0
 grow_vertical = 0
 
 [node name="start_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Start"
+
+[node name="tutorial_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
 
 [node name="quit_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2

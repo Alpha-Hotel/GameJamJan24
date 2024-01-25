@@ -1,35 +1,127 @@
-[gd_scene load_steps=8 format=3 uid="uid://dffkasrp4l4vu"]
+[gd_scene load_steps=10 format=3 uid="uid://dffkasrp4l4vu"]
 
 [ext_resource type="Script" path="res://Scenes/Tutorial.gd" id="1_r4ca3"]
-[ext_resource type="PackedScene" uid="uid://dmqghto7aslfc" path="res://Scenes/mycelia_node.tscn" id="2_e06wm"]
-[ext_resource type="PackedScene" uid="uid://c7pdd8t2ce2cg" path="res://Scenes/connector.tscn" id="3_y1bhl"]
 [ext_resource type="PackedScene" uid="uid://d3mtgnkn0hbeh" path="res://Scenes/resource_node.tscn" id="4_wlp62"]
-[ext_resource type="PackedScene" uid="uid://c7pvpep2pjy8s" path="res://Scenes/player_hint_danger_node.tscn" id="5_v3yf1"]
-[ext_resource type="PackedScene" uid="uid://465f8sou55il" path="res://Scenes/player_hint_resource_node.tscn" id="6_nxh34"]
+[ext_resource type="PackedScene" uid="uid://cugsva4pjrbag" path="res://Scenes/audio_stream_player.tscn" id="5_yw06w"]
+[ext_resource type="PackedScene" uid="uid://c2jbkbyt0djhu" path="res://Scenes/audio_stream_player_2.tscn" id="6_gkbl0"]
+[ext_resource type="PackedScene" uid="uid://euixva8fu1s1" path="res://Scenes/audio_stream_player_3.tscn" id="7_ntw12"]
 [ext_resource type="PackedScene" uid="uid://cdsqf3uvklq3e" path="res://Scenes/collider.tscn" id="7_q081b"]
+[ext_resource type="PackedScene" uid="uid://lu6bvncjw1f7" path="res://Scenes/audio_stream_player_4.tscn" id="8_vieql"]
+[ext_resource type="PackedScene" uid="uid://bm57yxysgkl8v" path="res://Scenes/audio_stream_player_5.tscn" id="9_t4h5n"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jvd2b"]
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_r4ca3")
 
-[node name="Mycelia Node" parent="." groups=["mycelia_nodes"] instance=ExtResource("2_e06wm")]
-position = Vector2(155, 136)
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Mycelia Node2" parent="." groups=["mycelia_nodes"] instance=ExtResource("2_e06wm")]
-position = Vector2(269, 136)
+[node name="Score" type="Label" parent="HUD"]
+offset_left = 561.0
+offset_top = 7.0
+offset_right = 601.0
+offset_bottom = 30.0
+text = "0
+"
 
-[node name="connector" parent="." instance=ExtResource("3_y1bhl")]
-position = Vector2(178, 191)
-points = PackedVector2Array(303.333, -183.333, -76.6667, -183.333)
+[node name="Score_l" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_top = 6.0
+offset_right = -19.0
+offset_bottom = 29.0
+grow_horizontal = 2
+text = "Score:"
+
+[node name="Label" type="Label" parent="HUD"]
+offset_left = 124.0
+offset_top = 149.0
+offset_right = 437.0
+offset_bottom = 250.0
+text = "These mushrooms being placed are your mycelia colonies"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="HUD"]
+offset_left = 696.0
+offset_top = 160.0
+offset_right = 1010.0
+offset_bottom = 235.0
+text = "When they are placed, they search for nearby nutrients and enemy fungal colonies. Green is good, red is bad.
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="HUD"]
+offset_left = 121.0
+offset_top = 283.0
+offset_right = 511.0
+offset_bottom = 439.0
+text = "You gain score by placing a connected mushroom colony near a resource node."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="HUD"]
+offset_left = 586.0
+offset_top = 288.0
+offset_right = 1030.0
+offset_bottom = 337.0
+text = "You gain more points if colony that collects the resource node has more connections."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label5" type="Label" parent="HUD"]
+offset_left = 384.0
+offset_top = 455.0
+offset_right = 697.0
+offset_bottom = 556.0
+text = "If you place a mushroom colony too close to an enemy fungal colony, your colony and any connected colonies will die."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label6" type="Label" parent="HUD"]
+offset_left = 441.0
+offset_top = 74.0
+offset_right = 648.0
+offset_bottom = 114.0
+
+[node name="Button" type="Button" parent="HUD"]
+offset_left = 885.0
+offset_top = 558.0
+offset_right = 1066.0
+offset_bottom = 589.0
+text = "Back"
+icon = SubResource("CanvasTexture_jvd2b")
 
 [node name="Resource Node" parent="." instance=ExtResource("4_wlp62")]
-position = Vector2(199, 303)
-
-[node name="player_hint_danger_node" parent="." instance=ExtResource("5_v3yf1")]
-position = Vector2(199, 434)
-one_shot = false
-
-[node name="player_hint_danger_node2" parent="." instance=ExtResource("6_nxh34")]
-position = Vector2(194, 543)
-one_shot = false
+visible = false
+position = Vector2(545, 308)
 
 [node name="Collider" parent="." instance=ExtResource("7_q081b")]
+position = Vector2(55, 67)
+
+[node name="1" type="Marker2D" parent="."]
+position = Vector2(487, 196)
+
+[node name="2" type="Marker2D" parent="."]
+position = Vector2(599, 196)
+
+[node name="3" type="Marker2D" parent="."]
+position = Vector2(539, 308)
+
+[node name="4" type="Marker2D" parent="."]
+position = Vector2(539, 411)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("5_yw06w")]
+
+[node name="AudioStreamPlayer2" parent="." instance=ExtResource("6_gkbl0")]
+
+[node name="AudioStreamPlayer3" parent="." instance=ExtResource("7_ntw12")]
+
+[node name="AudioStreamPlayer4" parent="." instance=ExtResource("8_vieql")]
+
+[node name="AudioStreamPlayer5" parent="." instance=ExtResource("9_t4h5n")]
