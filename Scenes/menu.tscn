@@ -35,6 +35,15 @@ grow_vertical = 2
 scale = Vector2(1.00357, 1.0028)
 script = ExtResource("1_bbhou")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -6
+layout_mode = 0
+offset_left = -87.0
+offset_top = -67.0
+offset_right = 1574.0
+offset_bottom = 894.0
+color = Color(0.129412, 0.407843, 0.411765, 1)
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
