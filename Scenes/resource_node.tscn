@@ -70,10 +70,11 @@ z_index = -1
 script = ExtResource("1_tugmp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
 position = Vector2(5, -6)
 scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_7xq2f")
-frame_progress = 0.523779
+frame_progress = 0.837223
 offset = Vector2(50, -950)
 
 [node name="rescource_collider" type="CollisionShape2D" parent="."]

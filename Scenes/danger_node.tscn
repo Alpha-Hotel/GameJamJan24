@@ -40,6 +40,7 @@ shape = SubResource("CircleShape2D_vumo6")
 [node name="player_hint_danger_node" parent="." instance=ExtResource("3_mujll")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
 position = Vector2(-2, -44)
 scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_olqx8")
