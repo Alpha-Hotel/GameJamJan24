@@ -18,6 +18,7 @@ func _ready():
 	$Collider.remove_from_group("mycelia_nodes")
 	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
 	add_danger_node(Vector2(542, 386))
+	place_resource()
 	place_tutorial_nodes()
 
 var rng1 = RandomNumberGenerator.new()
@@ -40,11 +41,7 @@ func place_tutorial_nodes():
 	await get_tree().create_timer(3.0).timeout
 	place_custom($"4".position)
 	await get_tree().create_timer(4.0).timeout
-	var node_copy = resource_node.instantiate()
-	add_child(node_copy)
-	node_copy.visible=false
-	node_copy.position.x = 545
-	node_copy.position.y = 308
+	place_resource()
 	#node_copy.get_node("texture").visible = false
 	for node in get_tree().get_nodes_in_group("mycelia_nodes"):
 		node.queue_free()
@@ -55,6 +52,12 @@ func place_tutorial_nodes():
 	add_danger_node(Vector2(539, 411))
 	await get_tree().create_timer(4.0).timeout
 	place_tutorial_nodes()
+
+func place_resource():
+	var node_copy = resource_node.instantiate()
+	add_child(node_copy)
+	node_copy.position.x = 545
+	node_copy.position.y = 308
 
 func place_custom(pos):
 	if check_node_collision(pos)[1].is_empty():
@@ -67,13 +70,14 @@ func place_custom(pos):
 			var score = node.connection_list.size() * collisions[2].size()
 			node.set_score(score)
 			increase_score(score)
-			
+			if not collisions[2].is_empty():
+				remove_resource_nodes(collisions, node)
 			if not collisions[0].is_empty():
 				show_player_hint(collisions)
 				reduce_score(node.kill_node())
 				chain_death(custom_collision(20, pos ))
-			if not collisions[2].is_empty():
-				remove_resource_nodes(collisions, node)
+				for i in collisions[0]:
+					i['collider'].show_danger()
 			var vision_collision = custom_collision(10, pos)
 			if not vision_collision[2].is_empty():
 					show_player_hint(vision_collision)

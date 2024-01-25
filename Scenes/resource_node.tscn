@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/resource_node.gd" id="1_tugmp"]
 [ext_resource type="Texture2D" uid="uid://cnnl2qt8vfigw" path="res://Frames/Nutrient/MushroomNutruent2.png" id="2_g7m72"]
 [ext_resource type="Texture2D" uid="uid://xgm71eklhobn" path="res://Frames/Nutrient/MushroomNutruent3.png" id="3_ktm2y"]
-[ext_resource type="Texture2D" path="res://Frames/Nutrient/MushroomNutruent4.png" id="4_ga7ml"]
+[ext_resource type="Texture2D" uid="uid://7s2cesqauhod" path="res://Frames/Nutrient/MushroomNutruent4.png" id="4_ga7ml"]
 [ext_resource type="Texture2D" uid="uid://c8sopcb8ybna6" path="res://Frames/Nutrient/MushroomNutruent5.png" id="5_p1v0q"]
 [ext_resource type="Texture2D" uid="uid://3oek0luc0ix2" path="res://Frames/Nutrient/MushroomNutruent1.png" id="6_oejrf"]
 [ext_resource type="Texture2D" uid="uid://d1u6r24yeta0e" path="res://Frames/Nutrient/MushroomNutruent6.png" id="7_tqmrm"]

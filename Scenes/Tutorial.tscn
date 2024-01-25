@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7i06oqc33b13"]
+[gd_scene load_steps=9 format=3 uid="uid://b7i06oqc33b13"]
 
 [ext_resource type="Script" path="res://Scenes/Tutorial.gd" id="1_r4ca3"]
-[ext_resource type="PackedScene" uid="uid://d3mtgnkn0hbeh" path="res://Scenes/resource_node.tscn" id="4_wlp62"]
 [ext_resource type="PackedScene" uid="uid://cugsva4pjrbag" path="res://Scenes/audio_stream_player.tscn" id="5_yw06w"]
 [ext_resource type="PackedScene" uid="uid://c2jbkbyt0djhu" path="res://Scenes/audio_stream_player_2.tscn" id="6_gkbl0"]
 [ext_resource type="PackedScene" uid="uid://euixva8fu1s1" path="res://Scenes/audio_stream_player_3.tscn" id="7_ntw12"]
@@ -94,10 +93,6 @@ offset_right = 1066.0
 offset_bottom = 589.0
 text = "Back"
 icon = SubResource("CanvasTexture_jvd2b")
-
-[node name="Resource Node" parent="." instance=ExtResource("4_wlp62")]
-visible = false
-position = Vector2(545, 308)
 
 [node name="Collider" parent="." instance=ExtResource("7_q081b")]
 position = Vector2(55, 67)
