@@ -15,7 +15,7 @@ func _ready():
 	$HUD/Counter_number.text = "10"
 	Input.set_custom_mouse_cursor(node_image, 0, Vector2(15,15))
 	spawn_resource_nodes(30)
-	spawn_danger_nodes(30)
+	spawn_danger_nodes(18)
 	
 var rng1 = RandomNumberGenerator.new()
 var rng2 = RandomNumberGenerator.new()
