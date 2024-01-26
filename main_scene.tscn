@@ -15,6 +15,8 @@
 [node name="main" type="Node2D"]
 script = ExtResource("1_ify4s")
 
+[node name="AudioStreamPlayer6" parent="." instance=ExtResource("7_8xsr0")]
+
 [node name="Collider" parent="." instance=ExtResource("2_oweyy")]
 
 [node name="HUD" type="CanvasLayer" parent="."]

@@ -59,7 +59,7 @@ func _input(event):
 			if not vision_collision[2].is_empty():
 					show_player_hint(vision_collision)
 		else:
-			if int($HUD/Counter_number.text) > 0:
+			if int($HUD/Counter_number.text) < 0:
 				pass
 		
 	elif event is InputEventMouseMotion:
